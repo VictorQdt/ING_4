@@ -39,10 +39,10 @@ describe('User REST API', () => {
         })
     })
     
-    it('pass wrong parameters', (done) => {
+    it('pass wrong user parameters', (done) => {
       const user = {
-        firstname: 'Theo',
-        lastname: 'Tarbe'
+        firstname: 'theo',
+        lastname: 'tarbe'
       }
       chai.request(app)
         .post('/user')
@@ -61,12 +61,11 @@ describe('User REST API', () => {
 
   describe('GET /user', ()=> {
      //TODO Create test for the get method
-
-     it('get a user by username', (done) => {
+     it.skip('successfully get a user by username', (done) => {
       const user = {
         username: 'theotarbe',
-        firstname: 'Theo',
-        lastname: 'Tarbe'
+        firstname: 'theo',
+        lastname: 'tarbe'
       }
       chai.request(app)
         .get('/user')
@@ -81,6 +80,5 @@ describe('User REST API', () => {
            throw err
         })
     })
-
   })
 })
