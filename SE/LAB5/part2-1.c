@@ -2,6 +2,8 @@
 #include <stdio.h> 
 #include <string.h> 
 #include <sys/types.h> 
+#include <fcntl.h>
+#include <sys/stat.h>
 #include <sys/shm.h> 
 #include <sys/wait.h>
 #include <unistd.h>
@@ -32,7 +34,7 @@ int main (int argc, char *argv[]) {
     int iret1, iret2;
     pthread_t thread1, thread2;
 
-    s = sem_open("sem", O_CREAT, S_IRUSR | S_IWUSR, 1);
+    s = sem_open("s", O_CREAT, S_IRUSR | S_IWUSR, 1);
     
     printf("initial value i = %d\n", i);
 
@@ -55,6 +57,3 @@ int main (int argc, char *argv[]) {
 
     return 0;
 }
-
-
-
