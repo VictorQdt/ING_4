@@ -69,8 +69,11 @@ int main()
   char buf[BUFSIZ];
   int size;
   int clifd;
+  int file1;
 
-     SOCKET socket_client = accept(socket_listen, (struct sockaddr *)&client_address, &client_len);
+  char *buffer[BUFSIZ];
+
+     SOCKET socket_client;  
     //Just check if everything is ok with accept()
     if (!ISVALIDSOCKET(socket_client))
     {
@@ -81,12 +84,19 @@ int main()
   while (1)
   {
 
+    socket_client = accept(socket_listen, (struct sockaddr *)&client_address, &client_len);
+    clifd = socket_client;
     size = read(clifd, buf, BUFSIZ);
-
+    printf("%d\n", size);
     write(1, buf, size);
 
-    if ((file = open("index.hmtl", O_RDONLY)) == -1)
+    //if ((file = open("index.hmtl", O_RDONLY)) == -1)
       //handle_error("open");
+
+    FILE * stream;
+    stream = fopen("index.html", "r");
+    file1 = fread(buffer, sizeof(char), BUFSIZ, stream);
+    send(clifd, buffer, strlen(&buffer), 0);
 
     size = sprintf(buf, "HTTP/1.1 200 OK \n\n");
 
@@ -98,11 +108,10 @@ int main()
 
     close(clifd);
     close(file);
-    sleep(1);
   }
 
   //TCP connection has been established to a remote client.
-  printf("Client is connected... ");
+  /*printf("Client is connected... ");
   char address_buffer[100];
   //takes the client's address and address length. The address length is needed because
   //getnameinfo() can work with both IPv4 and IPv6 addresses
@@ -126,7 +135,7 @@ int main()
   printf("Sent %d of %d bytes.\n", bytes_sent, (int)strlen(time_msg));
   //Close the client connection to indicate to the browser that we've sent all of our data:
   printf("Closing connection...\n");
-  CLOSESOCKET(socket_client);
+  CLOSESOCKET(socket_client);*/
 
   return 0;
 }
