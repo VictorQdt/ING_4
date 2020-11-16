@@ -30,6 +30,12 @@ npm start
 Open the React App at http://localhost:3000
 ```
 
+# Versions 
+
+V1 : Test coverage and persistent storage (leveldb)
+V2 : React -> Architecture, date, markdown handeling
+V3 (to come ) : UI Design
+
 # Author information
 
 Théophile TARBE / Victor QUIDET
