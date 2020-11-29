@@ -74,13 +74,10 @@ try {
 
 //EXPRESSIONS REGULIÈRES 
 
-//Question 12. Combien de films sont sortis dans les années quatre-vingt ? [80-89]
+//Question 12. Combien de films sont sortis dans les années quatre-vingt ?
 //(l’année de sortie est indiquée entre parenthèses à la fin du titre de chaque film)
 db.movies.find(
-    {
-        $or: [{ title: { $regex: /.*80.*/ } }, { title: { $regex: /.*81.*/ } }, { title: { $regex: /.*82.*/ } }, { title: { $regex: /.*83.*/ } }, { title: { $regex: /.*84.*/ } },
-        { title: { $regex: /.*85.*/ } }, { title: { $regex: /.*86.*/ } }, { title: { $regex: /.*87.*/ } }, { title: { $regex: /.*88.*/ } }, { title: { $regex: /.*89.*/ } }]
-    }
+    {title: { $regex: /198/ } }
 ).count()
 
 //Question 13. Combien y a-t-il de films d’horreur ?
