@@ -32,10 +32,13 @@ export default () => {
       <Grid
         container
         direction="row"
-        justify="center"
+        //justify="center"
         alignItems="center"
-        spacing={5}
+        spacing={5}      
       >
+        <Typography color="textPrimary">
+              Yo
+            </Typography>
         <Grid item xs>
           <div css={styles.card}>
             <ChannelIcon css={styles.icon} />
