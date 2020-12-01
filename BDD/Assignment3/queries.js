@@ -77,7 +77,7 @@ try {
 //Question 12. Combien de films sont sortis dans les années quatre-vingt ?
 //(l’année de sortie est indiquée entre parenthèses à la fin du titre de chaque film)
 db.movies.find(
-    {title: { $regex: /198/ } }
+    { title: { $regex: /198/ } }
 ).count()
 
 //Question 13. Combien y a-t-il de films d’horreur ?
@@ -123,13 +123,46 @@ db.users.aggregate([
     { $match: { name: "Jayson Brad" } },
     { $unwind: '$movies' },
     { $sort: { "movies.timestamp": -1 } },
-    { $limit: 3 }
+    { $limit: 3 },
+    {
+        $lookup:
+        {
+            from: "movies",
+            localField: "movies.movieid",
+            foreignField: "_id",
+            as: "movie_infos"
+        }
+    },
+    {
+        $group: {
+            _id: "$_id",
+            name: { "$first": "$name" },
+            last_3_movies: { $push: { title: "$movie_infos.title" } }
+        }
+    }
 ]).pretty()
 
 //AGREGATS
 
 //Question 21. Montrer combien de films ont été produits durant chaque année des années 90 ; 
 //ordonner les résultats de l’année la plus à la moins fructueuse.
+db.movies.aggregate([
+    { $match: { title: { $regex: /199/ } } },
+    { $unwind: "$title" },
+    {
+        $project: {
+            title_split: { $split: ["$title", " "] },
+        }
+    },
+    { $addFields: { lastElem: { $last: "$title_split" } } },
+    {
+        $group: {
+            _id: { year: "$lastElem" },
+            nb_films: { $sum: 1 }
+        }
+    },
+    { $sort: { nb_films: -1 } }
+]).pretty()
 
 //Question 22. Quelle est la note moyenne du film Pulp Fiction, qui a pour id 296 ?
 db.users.aggregate(
@@ -141,7 +174,7 @@ db.users.aggregate(
             ratingAvg: { $avg: "$movies.rating" },
         }
     }
-)
+).pretty()
 
 //Question 23. En une seule requête, retourner pour chaque utilisateur son id, son nom, les notes maximale, minimale et moyenne qu’il a données, 
 //et ordonner le résultat par note moyenne croissante.
@@ -156,19 +189,69 @@ db.users.aggregate(
         }
     },
     { $sort: { avg_rating: -1 } },
-)
+).pretty()
 
 //Question 24. Quel est le genre le plus populaire en termes de nombre de notes ?
-// linker les 2 collections
-// parcourir tous les films et séparer les genres
-// compter combien de fois chaque film a été noté et à quel genre il appartient
-// trier et limit pour retourner le 1er
-
-db.movies.aggregate([
-    { $project: { genres: { $split: ["$genres", "|"] }, qty: 1 } },
-    { $unwind: "$genres" },
-    { $group: { _id: { "genres": "$genres" }, total_qty: { "$sum": "$qty" } } },
-    { $sort: { total_qty: -1 } }
-]);
+db.users.aggregate([
+    { $unwind: "$movies" },
+    {
+        $lookup:
+        {
+            from: "movies",
+            localField: "movies.movieid",
+            foreignField: "_id",
+            as: "movie_infos"
+        }
+    },
+    { $unwind: "$movie_infos" },
+    {
+        $project:
+        {
+            _id: { movie: "$movie_infos._id" },
+            Genres: { $split: ["$movie_infos.genres", "|"] },
+        }
+    },
+    { $unwind: "$Genres" },
+    {
+        $group:
+        {
+            _id: "$Genres", 
+            nb_rating: { $sum: 1 }
+        }
+    },
+    { $sort: { nb_rating: -1 } },
+    { $limit: 1 }
+]).pretty()
 
 //Question 25. Quel est le genre le mieux noté (celui dont la moyenne de toutes les notes est la plus élevée) ?
+db.users.aggregate([
+    { $unwind: "$movies" },
+    {
+        $lookup:
+        {
+            from: "movies",
+            localField: "movies.movieid",
+            foreignField: "_id",
+            as: "movie_infos"
+        }
+    },
+    { $unwind: "$movie_infos" },
+    {
+        $set:
+        {
+            _id: { movie: "$movie_infos._id" },
+            Genres: { $split: ["$movie_infos.genres", "|"] }
+        }
+    },
+    { $unwind: "$Genres" },
+    {
+        $group:
+        {
+            _id: "$Genres",
+            avg_genre: { $avg: "$movies.rating" }
+        }
+    },
+    { $sort: { avg_genre: -1 } },
+    { $limit: 1 }
+]).pretty()
+
