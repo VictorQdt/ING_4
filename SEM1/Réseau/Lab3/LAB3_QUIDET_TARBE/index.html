@@ -1,0 +1,80 @@
+HTTP/1.1 200 OK
+Content-type: text/html
+
+<!DOCTYPE html> <!-- spécifier au navigateur le language choisi-->
+
+<html>
+    
+    <head>
+        
+        <title>Internal CSS</title>
+        
+        <style type = "text/css">
+        
+            #header{
+                background-color: black;
+                color : white;
+                text-align: center;
+                padding: 5px;
+            }
+        
+            #nav{
+                line-height: 30px;
+                background-color: #eeeeee;
+                height: 400px;
+                width: 150px;
+                float: left;
+                padding: 5px;
+            }
+        
+            #section{
+                background-color: #cccccc;
+                height: 400px;
+                width: auto;
+                float: left;
+                padding: 5px;
+            }
+            
+            #footer{
+                background-color: black;
+                color: white;
+                clear: both;
+                text-align: center;
+                padding: 10px;
+            }
+        
+        </style>
+        
+    </head>
+
+    <body>
+    
+        <div id = "header">
+            <h1>Gallerie de villes</h1>
+        </div>
+    
+    
+        <div id = "nav">
+            <ul>
+                <li><a href="#">Londres</a></li>
+                <li><a href="#">Paris</a></li>
+                <li><a href="#">Berlin</a></li>
+            </ul>
+        </div>
+        
+        <div id = "section">
+            <h2>Londres</h2>
+            <p>Londres est la capitale du Royaume-Uni de la Grande-Bretagne et l'Irlande du Nord.</p>
+            <h2>Paris</h2>
+            <p>Paris est la capitale de la France.</p>
+            <h2>Berlin</h2>
+            <p>Berlin est la capitale de l'Allemagne.</p>
+        </div>
+        
+        <div id = "footer">
+            <p>Droit d’auteur | Copyright © 2020, Theophile TARBE</p>
+        </div>
+        
+    </body>
+
+</html>
