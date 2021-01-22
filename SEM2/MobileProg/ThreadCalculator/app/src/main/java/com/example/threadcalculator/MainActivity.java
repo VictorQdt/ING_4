@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Handler;
 import android.view.View;
 
 import android.view.Menu;
@@ -25,6 +26,40 @@ public class MainActivity extends AppCompatActivity {
     TextView operationView, resultView;
     String my_operation = "";
     LinearLayout linearLayout;
+    private Handler handler;
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    if ((my_operation.length() < 3) || (String.valueOf(view.getTag()).equals("="))) {
+                        if (!(String.valueOf(view.getTag()).equals("="))) {
+                            operationView = (TextView) findViewById(R.id.operationView);
+                            my_operation = my_operation.concat(String.valueOf(view.getTag()));
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    operationView.setText(my_operation);
+                                }
+                            });
+                        } else {
+                            String result = calculation(my_operation);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    resultView = (TextView) findViewById(R.id.resultView);
+                                    resultView.setText(result);
+                                }
+                            });
+
+                        }
+                    }
+                }
+            };
+            new Thread(runnable).start();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         if (linearLayout != null){
             linearLayout.addView(buttonEqual);
         }
-
+        handler = new Handler();
     }
 
     public String calculation(String operation){
@@ -118,22 +153,6 @@ public class MainActivity extends AppCompatActivity {
         return Float.toString(result);
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if ((my_operation.length() < 3) || (String.valueOf(view.getTag()).equals("="))) {
-                if (!(String.valueOf(view.getTag()).equals("="))) {
-                    operationView = (TextView) findViewById(R.id.operationView);
-                    my_operation = my_operation.concat(String.valueOf(view.getTag()));
-                    operationView.setText(my_operation);
-                } else {
-                    resultView = (TextView) findViewById(R.id.resultView);
-                    resultView.setText(calculation(my_operation));
-                }
-            }
-        }
-    };
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -156,3 +175,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
