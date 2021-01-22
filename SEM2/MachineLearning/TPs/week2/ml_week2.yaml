@@ -1,0 +1,6 @@
+name: ml_week2
+channels:
+  - defaults
+dependencies:
+  - python=3.6
+  - statsmodels=0.12.1

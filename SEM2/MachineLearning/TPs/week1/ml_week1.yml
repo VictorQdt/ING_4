@@ -1,0 +1,9 @@
+name: ml_week1
+channels:
+  - defaults
+dependencies:
+  - python=3.6
+  - numpy=1.18.1
+  - scipy=1.3.2
+  - nltk=3.4.5
+  - pandas
