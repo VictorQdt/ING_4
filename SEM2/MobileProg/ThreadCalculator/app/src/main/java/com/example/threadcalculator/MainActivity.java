@@ -1,5 +1,6 @@
 package com.example.threadcalculator;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,20 +31,15 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    if ((my_operation.length() < 3) || (String.valueOf(view.getTag()).equals("="))) {
-                        if (!(String.valueOf(view.getTag()).equals("="))) {
-                            operationView = (TextView) findViewById(R.id.operationView);
-                            my_operation = my_operation.concat(String.valueOf(view.getTag()));
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    operationView.setText(my_operation);
-                                }
-                            });
-                        } else {
+            if ((my_operation.length() < 3) || (String.valueOf(view.getTag()).equals("="))) {
+                if (!(String.valueOf(view.getTag()).equals("="))) {
+                    operationView = (TextView) findViewById(R.id.operationView);
+                    my_operation = my_operation.concat(String.valueOf(view.getTag()));
+                    operationView.setText(my_operation);
+                } else {
+                    /*Runnable runnable = new Runnable() {          Method using threads and handlers
+                        @Override
+                        public void run() {
                             String result = calculation(my_operation);
                             handler.post(new Runnable() {
                                 @Override
@@ -52,14 +48,30 @@ public class MainActivity extends AppCompatActivity {
                                     resultView.setText(result);
                                 }
                             });
-
                         }
-                    }
+                    };
+                    new Thread(runnable).start();*/
+                    new Calculation().execute(my_operation); // Method using AsyncTask
                 }
-            };
-            new Thread(runnable).start();
+            }
         }
     };
+
+    public class Calculation extends AsyncTask<String, Void, String> {
+        View view;
+        String result;
+        @Override
+        protected String doInBackground(String... strings) {
+            result = calculation(strings[0]);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            resultView = (TextView) findViewById(R.id.resultView);
+            resultView.setText(result);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
