@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Calculator</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Open new activty</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string name="URL">Enter your url</string>
+    <string name="submit">Submit</string>
     <string name="button0">0</string>
     <string name="button1">1</string>
     <string name="button2">2</string>

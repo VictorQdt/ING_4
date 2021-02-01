@@ -1,5 +1,6 @@
 package com.example.threadcalculator;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -19,6 +20,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.Console;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
+
 public class MainActivity extends AppCompatActivity {
 
     Button button0, button1, button2, button3, button4, button5, button6,
@@ -26,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonAdd, buttonSub, buttonMul, buttonDivided, buttonEqual;
     TextView operationView, resultView;
     String my_operation = "";
+    String last_operation = "";
     LinearLayout linearLayout;
     private Handler handler;
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -37,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
                     my_operation = my_operation.concat(String.valueOf(view.getTag()));
                     operationView.setText(my_operation);
                 } else {
-                    /*Runnable runnable = new Runnable() {          Method using threads and handlers
+                    /*Runnable runnable = new Runnable() {          //Method using threads and handlers
                         @Override
                         public void run() {
+                            last_operation = my_operation;
                             String result = calculation(my_operation);
                             handler.post(new Runnable() {
                                 @Override
@@ -57,12 +65,32 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public class Calculation extends AsyncTask<String, Void, String> {
+    private class Calculation extends AsyncTask<String, Void, String> {
         View view;
         String result;
         @Override
         protected String doInBackground(String... strings) {
-            result = calculation(strings[0]);
+            String[] operation = strings[0].split("");
+            last_operation = my_operation;
+            double nb1 = Double.parseDouble(operation[0]);
+            double nb2 = Double.parseDouble(operation[2]);
+            char op = operation[1].charAt(0);
+            System.out.println(op);
+            try {
+                Socket soc = new Socket("10.0.2.2", 9876);
+                DataInputStream dis = new DataInputStream(soc.getInputStream());
+                DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
+                dos.writeDouble(nb1);
+                dos.writeChar(op);
+                dos.writeDouble(nb2);
+                dos.flush();
+                result = Double.toString(dis.readDouble());
+                dis.close();
+                dos.close();
+                soc.close();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             return result;
         }
 
@@ -70,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             resultView = (TextView) findViewById(R.id.resultView);
             resultView.setText(result);
+
         }
     }
 
@@ -181,6 +210,17 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            String message;
+            if (resultView == null){
+                message = "No operation performed";
+            }
+            else{
+                message = last_operation + " = " + resultView.getText();
+            }
+            Intent intent;
+            intent = new Intent(MainActivity.this, SecondActivity.class);
+            intent.putExtra("LAST_OPERATION", message);
+            startActivity(intent);
             return true;
         }
 
