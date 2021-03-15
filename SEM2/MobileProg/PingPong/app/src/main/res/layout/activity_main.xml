@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:gravity="center"
+        android:text="@string/tile_welcome"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="75.0dip"
+        android:paddingTop="5.0dip"
+        android:paddingRight="75.0dip"
+        android:paddingBottom="1.0dip"
+        android:layout_marginTop="170dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView01">
+
+        <Button
+            android:id="@+id/btn_newGame"
+            android:tag="newgame"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="30.0dip"
+            android:text="@string/btn_newGame"
+            android:layout_weight="1.0" />
+
+        <Button
+            android:id="@+id/btn_history"
+            android:tag="history"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/btn_history"
+            android:layout_weight="1.0" />
+
+    </LinearLayout>
+
+</RelativeLayout>
