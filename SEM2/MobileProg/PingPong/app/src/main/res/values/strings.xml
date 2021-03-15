@@ -5,4 +5,8 @@
     <string name="tile_welcome">WELCOME</string>
     <string name="btn_newGame">New Game</string>
     <string name="btn_history">History</string>
+
+    <!--FRAGMENT PHOTO-->
+    <string name="takePhoto">Take a photo</string>
+    <string name="save">Save</string>
 </resources>
