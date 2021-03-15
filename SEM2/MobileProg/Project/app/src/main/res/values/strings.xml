@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Project</string>
+
+    <!--MAIN ACTIVITY-->
+    <string name="tile_welcome">WELCOME</string>
+    <string name="btn_newGame">New Game</string>
+    <string name="btn_history">History</string>
+
+    <!--NEW GAME-->
+    <string name="title_activity_new_game">NEW GAME</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_newGame">NEW GAME</string>
+</resources>
