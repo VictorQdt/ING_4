@@ -9,4 +9,8 @@
     <!--FRAGMENT PHOTO-->
     <string name="takePhoto">Take a photo</string>
     <string name="save">Save</string>
+
+    <!--FRAGMENT MAP-->
+    <string name="locate_string">Localisation : </string>
+
 </resources>
