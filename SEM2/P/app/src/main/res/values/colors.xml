@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2d3436</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="noir_bleu">#2c3e50</color>
+    <color name="ballon_background">#4ABAA3</color>
+    <color name="blanc_gris">#eeeeee</color>
+    <color name="gant_rouge">#ED3124</color>
+    <color name="gant_bleu">#23A9B7</color>
+</resources>
