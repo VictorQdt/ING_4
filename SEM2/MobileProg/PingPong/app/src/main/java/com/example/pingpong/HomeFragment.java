@@ -23,9 +23,6 @@ public class HomeFragment extends Fragment {
     Button start;
     private EditText name1, name2;
     private RadioButton sets, service;
-    private String namePlayer1, namePlayer2;
-    private boolean firstService, nbSets;
-
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -34,9 +31,10 @@ public class HomeFragment extends Fragment {
             Singleton.getInstance().setPlayer2(name2.getText().toString());
             Singleton.getInstance().setSets(sets.isChecked());
             Singleton.getInstance().setFirstService(service.isChecked());
+            Singleton.getInstance().setPointNumber(0);
             FragmentTransaction fragmentTransaction = getActivity()
                     .getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new PhotoFragment());
+            fragmentTransaction.replace(R.id.fragment_container, new NewPoint());
             fragmentTransaction.commit();
         }
     };
@@ -61,7 +59,7 @@ public class HomeFragment extends Fragment {
         start.setTypeface(type);
         sets = (RadioButton) newMatchView.findViewById(R.id.sets4);
         service = (RadioButton) newMatchView.findViewById(R.id.player1Serv);
-        name1 = (EditText) newMatchView.findViewById(R.id.editTextTextPersonName);
+        name1 = (EditText) newMatchView.findViewById(R.id.editTextTextPersonName1);
         name2 = (EditText) newMatchView.findViewById(R.id.editTextTextPersonName2);
         start.setOnClickListener(onClickListener);
         return newMatchView;

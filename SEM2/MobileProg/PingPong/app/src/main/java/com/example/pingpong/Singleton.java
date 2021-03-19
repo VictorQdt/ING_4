@@ -4,6 +4,16 @@ public class Singleton {
     private static Singleton uniqueInstance;
 
     private String player1, player2;
+    private boolean sets, firstService;
+    private int pointNumber;
+
+    public int getPointNumber() {
+        return pointNumber;
+    }
+
+    public void setPointNumber(int pointNumber) {
+        this.pointNumber = pointNumber;
+    }
 
     public boolean isSets() {
         return sets;
@@ -20,8 +30,6 @@ public class Singleton {
     public void setFirstService(boolean firstService) {
         this.firstService = firstService;
     }
-
-    private boolean sets, firstService;
 
     public String getPlayer1() {
         return player1;
