@@ -5,15 +5,15 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home" />
+        android:title="@string/bottom_nav_home" />
 
     <item
         android:id="@+id/nav_map"
         android:icon="@drawable/ic_baseline_map_24"
-        android:title="Map" />
+        android:title="@string/bottom_nav_map" />
 
     <item
         android:id="@+id/nav_photo"
         android:icon="@drawable/ic_baseline_add_a_photo_24"
-        android:title="Photo" />
+        android:title="@string/bottom_nav_photo" />
 </menu>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanc_gris"
+    tools:context=".Combat">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Les ScrollView ne peuvent avoir qu'un Child -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <!-- Actions -->
+            <LinearLayout
+                android:layout_width="460dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+                <!-- LinearLayout combattant 1 -->
+                <LinearLayout
+                    android:layout_width="204dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textview_comattant_un"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:textColor="#ED3124"
+                        android:textSize="22sp" />
+
+                    <!-- Bouton Jab -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/red_jab" />
+
+                        <Button
+                            android:id="@+id/jab_un_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="jab_un_btn"
+                            android:text="@string/jab"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Uppercut -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/red_upper" />
+
+                        <Button
+                            android:id="@+id/uppercut_un_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="uppercut_un_btn"
+                            android:text="@string/uppercut"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Kick -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/red_kick" />
+
+                        <Button
+                            android:id="@+id/kick_un_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="kick_un_btn"
+                            android:text="@string/kick"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Tackle -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/red_tackle" />
+
+                        <Button
+                            android:id="@+id/tackle_un_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="tackle_un_btn"
+                            android:text="@string/plaquage"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Immobilisation -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/red_immobilisation" />
+
+                        <Button
+                            android:id="@+id/immobilisation_un_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="immobilisation_un_btn"
+                            android:text="@string/immobilisation"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!-- Ligne verticale séparatrice -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="335dp"
+                    android:layout_marginTop="70dp"
+                    android:background="@android:color/black" />
+                <!-- LinearLayout combattant 2 -->
+                <LinearLayout
+                    android:layout_width="204dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textview_comattant_deux"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:textColor="#23A9B7"
+                        android:textSize="22sp" />
+
+                    <!-- Bouton Jab -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/blue_jab" />
+
+                        <Button
+                            android:id="@+id/jab_deux_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="jab_deux_btn"
+                            android:text="@string/jab"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Uppercut -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/blue_upper" />
+
+                        <Button
+                            android:id="@+id/uppercut_deux_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="uppercut_deux_btn"
+                            android:text="@string/uppercut"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Kick -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/blue_kick" />
+
+                        <Button
+                            android:id="@+id/kick_deux_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="kick_deux_btn"
+                            android:text="@string/kick"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Tackle -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/blue_tackle" />
+
+                        <Button
+                            android:id="@+id/tackle_deux_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="tackle_deux_btn"
+                            android:text="@string/plaquage"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                    <!-- Bouton Immobilisation -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/blue_immobilisation" />
+
+                        <Button
+                            android:id="@+id/immobilisation_deux_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@android:color/black"
+                            android:onClick="onActionBtnClicked"
+                            android:tag="immobilisation_deux_btn"
+                            android:text="@string/immobilisation"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- Dernieres actions enregistrées -->
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- "Dernières Actions enregistrées " -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/d_a_e"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+                <!-- Liste des 5 dernièeres actions -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/action_tmp_six"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+
+                    <ImageView
+                        android:id="@+id/action_tmp_five"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp" />
+
+                    <ImageView
+                        android:id="@+id/action_tmp_four"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp" />
+
+                    <ImageView
+                        android:id="@+id/action_tmp_three"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp" />
+
+                    <ImageView
+                        android:id="@+id/action_tmp_two"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp" />
+
+                    <ImageView
+                        android:id="@+id/action_tmp_one"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp" />
+                </LinearLayout>
+                <!-- VIEW BARRE HORIZONTALE A FAIRE -->
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

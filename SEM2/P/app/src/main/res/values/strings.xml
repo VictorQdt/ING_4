@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Fight Tracker</string>
+    <string name="nouveau_combat">Nouveau Combat</string>
+    <string name="combats_precedents">Combats précédents</string>
+    <string name="preparation">Préparation</string>
+    <string name="fighter_one">Combattant 1</string>
+    <string name="fighter_two">Combattant 2</string>
+    <string name="au_combat">Au combat</string>
+    <string name="accord_localisation">J\'autorise l\'accès à ma position</string>
+    <string name="Combat">Combat</string>
+    <string name="jab">Jab</string>
+    <string name="uppercut">Uppercut</string>
+    <string name="kick">Kick</string>
+    <string name="immobilisation">Immobilisation</string>
+    <string name="d_a_e">Dernières actions enregistrées</string>
+    <string name="terminer">Terminer</string>
+    <string name="victoire_ko">Victoire par K.O.</string>
+    <string name="victoire_tko">Victoire par T.K.O.</string>
+    <string name="victoire_soumission">Victoire par soumission</string>
+    <string name="historique">Historique</string>
+    <string name="plaquage">Plaquage</string>
+    <string name="camera">Camera</string>
+    <string name="prendre_une_photo">Prendre une photo</string>
+    <string name="choisir_une_photo">Choisir une photo</string>
+    <string name="match_done">Match terminé - Retour au menu</string>
+
+    <string-array name="fight_type">
+        <item>3 rounds</item>
+        <item>5 rounds</item>
+        <item>7 rounds</item>
+        <item>10 rounds</item>
+    </string-array>
+
+    <string-array name="weight_type">
+        <item>Poids plume</item>
+        <item>Poids moyen</item>
+        <item>Poids mi-lourd</item>
+        <item>Poids lourd</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="clique_pour_voir_les_d_tails_swipe_pour_supprimer_le_match">Clique pour voir les détails, swipe pour supprimer le match</string>
+    <string name="details">Détails du combat</string>
+    <string name="vainqueur">Vainqueur :</string>
+    <string name="nombre_de_rounds">Nombre de rounds :</string>
+    <string name="cat_gorie">Catégorie :</string>
+    <string name="type_de_victoire">Type de victoire :</string>
+    <string name="latitude">Latitude : </string>
+    <string name="longitude">Longitude :</string>
+</resources>

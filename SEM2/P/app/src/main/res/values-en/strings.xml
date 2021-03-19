@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fight Tracker</string>
+    <string name="nouveau_combat">New Fight</string>
+    <string name="combats_precedents">Previous Fights</string>
+    <string name="preparation">Readying</string>
+    <string name="fighter_one">Fighter 1</string>
+    <string name="fighter_two">Fighter 2</string>
+    <string name="au_combat">Fight</string>
+    <string name="accord_localisation">I agree to give access to my localisation</string>
+    <string name="Combat">Fight</string>
+    <string name="jab">Jab</string>
+    <string name="uppercut">Uppercut</string>
+    <string name="kick">Kick</string>
+    <string name="immobilisation">Immobilize</string>
+    <string name="d_a_e">Last actions saved</string>
+    <string name="terminer">Finish</string>
+    <string name="victoire_ko">Win by K.O.</string>
+    <string name="victoire_tko">Win by T.K.O.</string>
+    <string name="victoire_soumission">Win by submission</string>
+    <string name="historique">Previous Fights</string>
+    <string name="plaquage">Tackle</string>
+
+    <string-array name="fight_type">
+        <item>3 rounds</item>
+        <item>5 rounds</item>
+        <item>7 rounds</item>
+        <item>10 rounds</item>
+    </string-array>
+
+    <string-array name="weight_type">
+        <item>Light</item>
+        <item>Medium</item>
+        <item>Heavy</item>
+        <item>Super massive</item>
+    </string-array>
+    <string name="camera">Photo</string>
+    <string name="prendre_une_photo">Take a photo</string>
+    <string name="choisir_une_photo">Choose a picture</string>
+    <string name="match_done">Match done - Back to menu</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="clique_pour_voir_les_d_tails_swipe_pour_supprimer_le_match">Clic to load details, swipe to delete match</string>
+    <string name="details">Combat Details</string>
+    <string name="cat_gorie">Category</string>
+    <string name="latitude">"Latitude : "</string>
+    <string name="longitude">"Longitude : "</string>
+    <string name="nombre_de_rounds">"Rounds : "</string>
+    <string name="type_de_victoire">"Victory type : "</string>
+    <string name="vainqueur">"Winner : "</string>
+</resources>
