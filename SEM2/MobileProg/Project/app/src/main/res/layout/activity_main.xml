@@ -34,14 +34,16 @@
             android:layout_height="fill_parent"
             android:layout_marginBottom="30.0dip"
             android:text="@string/btn_newGame"
-            android:layout_weight="1.0" />
+            android:layout_weight="1.0"
+            android:tag="newgame"/>
 
         <Button
             android:id="@+id/btn_history"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:text="@string/btn_history"
-            android:layout_weight="1.0" />
+            android:layout_weight="1.0"
+            android:tag="history"/>
 
     </LinearLayout>
 

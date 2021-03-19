@@ -9,4 +9,10 @@
     <!--FRAGMENT PHOTO-->
     <string name="takePhoto">Take a photo</string>
     <string name="save">Save</string>
+    <string name="newMatch">New Match</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="nbOfSets">Number of sets</string>
+    <string name="firstServ">First service</string>
+    <string name="start">Start !</string>
 </resources>

@@ -12,4 +12,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_newGame">NEW GAME</string>
+    <string name="btn_back">back menu</string>
 </resources>
