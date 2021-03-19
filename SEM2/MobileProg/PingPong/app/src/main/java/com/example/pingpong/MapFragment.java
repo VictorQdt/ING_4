@@ -6,45 +6,71 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.Locale;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener {
+public class MapFragment extends Fragment {
 
-    private GoogleMap mMap;
-    private LocationManager locationManager;
-    private String provider;
+    //private GoogleMap mMap;
+    //private LocationManager locationManager;
+    //private String provider;
 
-    private TextView longitude, latitude;
+    private TextView tv_longitude, tv_latitude;
+    private FusedLocationProviderClient locClient;
+    private SupportMapFragment supportMapFragment;
 
-    private boolean geoLocPermit = false;
-    private boolean geoLocRequest = false;
-    private final int PERMISSION_REQUEST_LOC = 0;
-    private final int GPS_REQUEST_CODE = 1;
+    /**
+     * private boolean geoLocPermit = false;
+     * private boolean geoLocRequest = false;
+     * private final int PERMISSION_REQUEST_LOC = 0;
+     * private final int GPS_REQUEST_CODE = 1;
+     **/
+
+    Geocoder geocoder;
+    List<Address> addresses;
+
+    /**
+    // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+    addresses = geocoder.getFromLocation(tv_longitude, tv_latitude, 1);
+    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+    String city = addresses.get(0).getLocality();
+    String state = addresses.get(0).getAdminArea();
+    String country = addresses.get(0).getCountryName();
+    String postalCode = addresses.get(0).getPostalCode();
+    String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+     **/
 
 
     @Nullable
@@ -55,208 +81,132 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         View map_view = inflater.inflate(R.layout.fragment_map, container, false);
 
         //Initialize fields
-        //txt_coord = (TextView) getActivity().findViewById(R.id.txt_coord);
-        longitude = (TextView) getActivity().findViewById(R.id.tv_long);
-        longitude = (TextView) getActivity().findViewById(R.id.tv_lat);
+        Button btn_loc = (Button) map_view.findViewById(R.id.btn_getLoc);
+        tv_longitude = (TextView) map_view.findViewById(R.id.tv_long);
+        tv_latitude = (TextView) map_view.findViewById(R.id.tv_lat);
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
 
-        // locate your position
-        // Get the location manager
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        provider = LocationManager.GPS_PROVIDER;
+
+
+        //Initialize location Client
+        locClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         //Initialize fragment map
-        SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
-        supportMapFragment.getMapAsync(this);
+        supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
 
-        /**
+        // Button Location Listener
+        btn_loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Check condition
+                if (ContextCompat.checkSelfPermission(getActivity()
+                        , Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(getActivity()
+                                , Manifest.permission.ACCESS_COARSE_LOCATION)
+                                == PackageManager.PERMISSION_GRANTED) {
+                    // When permission is granted : call method
+                    getCurrentLocation();
+                } else {
+                    // When permission is not granted
+                    // Request permission
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                            , Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                }
+            }
+        });
+
         //Asynchchronous map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
                 //When map is charged
-                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
-                        // When clicking on map
-                        // Initialize options marker
-                        MarkerOptions markerOptions = new MarkerOptions();
-                        // Position marker
-                        markerOptions.position(latLng);
-                        // Titre du marker
-                        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-                        // Clear marker
-                        mMap.clear();
-                        // Zoom
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                        // Add marker
-                        mMap.addMarker(markerOptions);
-                    }
+                mMap.setOnMapClickListener(latLng -> {
+                    // When clicking on map
+                    // Initialize options marker
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    // Position marker
+                    markerOptions.position(latLng);
+                    // Titre du marker
+                    markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+                    // Clear marker
+                    mMap.clear();
+                    // Zoom
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                    // Add marker
+                    mMap.addMarker(markerOptions);
                 });
             }
-        });**/
+        });
 
         //Return view
         return map_view;
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @SuppressLint("DefaultLocale")
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in the last known location and move the camera
-        if (locationManager != null) {
-            @SuppressLint("MissingPermission") Location l = locationManager.getLastKnownLocation(provider);
-
-            if (l != null) {
-                LatLng coord = new LatLng(l.getLatitude(), l.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(coord).title("Last position"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coord, 15));
-
-                longitude.setText(String.format("Longitude %s", l.getLongitude()));
-                latitude.setText(String.format("Latitude %s", l.getLatitude()));
-            }
-        }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-        Toast.makeText(getContext(), "Location update", Toast.LENGTH_LONG);
-        int lat = (int) location.getLatitude();
-        int lng = (int) location.getLongitude();
-        LatLng coord = new LatLng(lat, lng);
-
-        // show the location coordinates in the textview
-        //txt_coord.setText(String.format("Latitude = %d\nLongitude =%d", lat, lng));
-        longitude.setText(lat);
-        latitude.setText(lng);
-
-        // add a marker on the map && zoom in
-        mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coord, 15));
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        Toast.makeText(getContext(), "Enabled new provider " + provider,
-                Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Toast.makeText(getContext(), "Disabled provider " + provider,
-                Toast.LENGTH_SHORT).show();
-
-        // enable it again !
-        //Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        //startActivityForResult(intent, GPS_REQUEST_CODE);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (geoLocPermit || ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getContext(),
-                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-
-            // if GPS is not enabled, ask the use to enable it
-            if (!locationManager.isProviderEnabled(provider)) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivityForResult(intent, GPS_REQUEST_CODE);
-            } else
-                requestLocationUpdates();
-
-            return;
-        }
-
-        if (!geoLocRequest) {// if it ever resumes and we've already requested the permits, we won't ask twice
-            geoLocRequest = true;
-            // ask for permissions; this is asynchronous
-            ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_REQUEST_LOC);
-        }
-    }
-
-
-    @SuppressLint("MissingPermission")
-    private void requestLocationUpdates() {
-        Toast.makeText(getContext(), "Request location updates", Toast.LENGTH_LONG).show();
-        locationManager.requestLocationUpdates(provider, 400, 1, this);
-    }
-
-
-    @SuppressLint("MissingPermission")
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GPS_REQUEST_CODE && resultCode == 0) {
-            //String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-            if (provider != null) {
-                Log.v("GPS", " Location providers: " + provider);
-                //Start searching for location and update the location text when update available.
-                requestLocationUpdates();
-            } else {
-                Objects.requireNonNull(getActivity()).finish();
-            }
-        }
-    }
-
-
-
-    /* Remove the locationlistener updates when Activity is paused */
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (geoLocPermit)
-            locationManager.removeUpdates(this);
-        return;
-    }
-
-
-    @SuppressLint("MissingPermission")
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-
-        if (requestCode == PERMISSION_REQUEST_LOC) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Check conditions
+        if (requestCode == 100 && (grantResults.length > 0) &&
+                (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
             // Request for geolocation permit
-            if (grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                // Permission has been granted. Request location updates
-                Snackbar.make(getActivity().getWindow().getDecorView(), R.string.locate_string,
-                        Snackbar.LENGTH_SHORT)
-                        .show();
-
-                geoLocPermit = true;
-                requestLocationUpdates();
-
-            } else
-                // Permission request was denied. quit the activity
-                Objects.requireNonNull(getActivity()).finish();
-
+            getCurrentLocation();
+        } else {
+            // Permission request was denied. quit the activity
+            Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
         }
         // END_INCLUDE(onRequestPermissionsResult)
     }
 
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation() {
+        // Initialize location manager
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        // Check conditions
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            // When Location service is enabled : get last location
+            locClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    // Initialize location
+                    Location loc = task.getResult();
+                    // Check conditions
+                    if (loc != null) {
+                        // Loc is not null then fix latitude and longitude
+                        tv_longitude.setText(String.valueOf(loc.getLongitude()));
+                        tv_latitude.setText(String.valueOf(loc.getLatitude()));
+                    } else {
+                        // If location result is null
+                        // Initialize loc request
+                        LocationRequest locationRequest = new LocationRequest()
+                                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                                .setInterval(10000)
+                                .setFastestInterval(1000)
+                                .setNumUpdates(1);
+
+                        // Initialize location callback
+                        LocationCallback locationCallback = new LocationCallback() {
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                // Initialize location
+                                Location loc1 = locationResult.getLastLocation();
+                                //Set longitude & latitude
+                                tv_longitude.setText(String.valueOf(loc.getLongitude()));
+                                tv_latitude.setText(String.valueOf(loc.getLatitude()));
+                            }
+                        };
+                        // Request location updates
+                        locClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+                    }
+                }
+            });
+        } else {
+            // When location service is not enabled
+            // Open location setting
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
 }
