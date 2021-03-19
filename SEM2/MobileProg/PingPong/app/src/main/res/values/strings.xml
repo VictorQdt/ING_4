@@ -6,11 +6,22 @@
     <string name="btn_newGame">New Game</string>
     <string name="btn_history">History</string>
 
+    <!--BOTTOM NAV-->
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_map">Map</string>
+    <string name="bottom_nav_photo">Photo</string>
+
     <!--FRAGMENT PHOTO-->
     <string name="takePhoto">Take a photo</string>
     <string name="save">Save</string>
 
     <!--FRAGMENT MAP-->
     <string name="locate_string">Localisation : </string>
+    <string name="hint_loc">Localisation</string>
+    <string name="get_loc">Get Location</string>
+    <string name="latitude">Latitude</string>
+    <string name="tv_latitude">0.0</string>
+    <string name="longitude">Longitude</string>
+    <string name="tv_longitude">0.0</string>
 
 </resources>
