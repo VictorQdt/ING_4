@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -29,12 +30,14 @@ public class HomeFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            namePlayer1 = name1.getText().toString();
-            namePlayer2 = name2.getText().toString();
-            if(sets.isChecked()) nbSets = true;
-            else nbSets =false;
-            if(service.isChecked()) firstService = true;
-            else firstService =false;
+            Singleton.getInstance().setPlayer1(name1.getText().toString());
+            Singleton.getInstance().setPlayer2(name2.getText().toString());
+            Singleton.getInstance().setSets(sets.isChecked());
+            Singleton.getInstance().setFirstService(service.isChecked());
+            FragmentTransaction fragmentTransaction = getActivity()
+                    .getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new PhotoFragment());
+            fragmentTransaction.commit();
         }
     };
 
