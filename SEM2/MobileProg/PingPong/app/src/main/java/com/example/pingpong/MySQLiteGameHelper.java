@@ -1,11 +1,16 @@
 package com.example.pingpong;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class MySQLiteGameHelper extends SQLiteOpenHelper {
 
@@ -29,7 +34,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String strSql = "create table ppGame ("
-                + " idGame INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + " idGame TEXT PRIMARY KEY AUTOINCREMENT,"
                 + " player1 TEXT NOT NULL,"
                 + " player2 TEXT NOT NULL,"
                 + " nbOfSets INTEGER NOT NULL,"
@@ -54,12 +59,24 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Log.i("DATABASE", "onCreate invoked");
     }
 
-    public void startGame(String player1, String player2, Integer nbOfSets, Integer firstServ ) {
+    public void createGame(Integer idGame, String player1, String player2, Integer nbOfSets, Integer firstServ ) {
         player1 = player1.replace("'", "''");
         player2= player2.replace("'", "''");
-        String strSQL = "insert into ppGame (player1, player2, nbOfSets, firstServ) values ( '"
-                + player1 + "','" + player2 + "', " + nbOfSets + "," + firstServ + ")";
+        String strSQL = "insert into ppGame (idGame, player1, player2, nbOfSets, firstServ) values ( '"
+                + idGame + ", " + player1 + "','" + player2 + "', " + nbOfSets + "," + firstServ + ")";
         this.getWritableDatabase().execSQL( strSQL );
         Log.i("DATABASE", "startGame invoked");
+    }
+
+    public List<MySQLiteGameHelper> listGames(){
+        List<MySQLiteGameHelper> games = new ArrayList<>();
+
+        String strSQL = "select * from ppGame";
+        Cursor cursor = this.getReadableDatabase().rawQuery(strSQL, null);
+        cursor.moveToNext();
+        while (!cursor.isAfterLast()){
+            // MySQLiteGameHelper game = new MySQLiteGameHelper(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getInt(3));
+        }
+        return games;
     }
 }

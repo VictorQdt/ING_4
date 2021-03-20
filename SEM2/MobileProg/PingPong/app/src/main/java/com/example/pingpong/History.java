@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 public class History extends AppCompatActivity {
 
     private TextView gameInfos;
@@ -17,13 +19,15 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        /**
-        gameInfos = (TextView) findViewById(R.id.gameInfos);
+
+        //gameInfos = (TextView) findViewById(R.id.gameInfos);
         mySQLiteGameHelper = new MySQLiteGameHelper(this);
 
-        mySQLiteGameHelper.startGame("Quidet", "Tété", 2, 0);
-        mySQLiteGameHelper.startGame("zob", "zoulou", 3, 1);
+        mySQLiteGameHelper.createGame(1, "Quidet", "Tété", 2, 0);
+        mySQLiteGameHelper.createGame(2, "zob", "zoulou", 3, 1);
+        mySQLiteGameHelper.createGame(3, "olala", "zola", 2, 1);
 
-        mySQLiteGameHelper.close();**/
+
+        mySQLiteGameHelper.close();
     }
 }

@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/newPointTitle"
         android:textAlignment="center"
         android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
         android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="344dp"
+        android:layout_marginTop="424dp"
         android:text="@string/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -33,21 +34,23 @@
 
     <Switch
         android:id="@+id/switchAce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="180dp"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="248dp"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/pointfor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="136dp"
-        android:text="@string/pointfor"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="132dp"
+        android:text="@string/txt_pointFor"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,53 +66,45 @@
 
         <RadioButton
             android:id="@+id/radioPlayer1"
-            android:layout_width="wrap_content"
+            android:layout_width="97dp"
             android:layout_height="match_parent"
-            android:text="RadioButton" />
+            android:text="@string/radioButton_Gamer1" />
 
         <RadioButton
             android:id="@+id/radioPlayer2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="RadioButton" />
+            android:text="@string/radioButton_Gamer2" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/winningreturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="44dp"
-        android:text="Retour gagnant"
-        app:layout_constraintBottom_toTopOf="@+id/pointType"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="147dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/txtWiningReturn"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/switchWinningReturn"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ace" />
 
     <Switch
         android:id="@+id/switchWinningReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Switch"
+        android:layout_width="62dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="156dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
-        app:layout_constraintStart_toEndOf="@+id/winningreturn"
-        app:layout_constraintTop_toBottomOf="@+id/switchAce" />
-
-    <TextView
-        android:id="@+id/pointType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pointType"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintTop_toBottomOf="@+id/switchAce"
+        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
     <RadioGroup
+        android:id="@+id/radioGroup3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/buttonNext"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,26 +114,41 @@
 
         <RadioButton
             android:id="@+id/radioDirect"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:layout_height="match_parent"
-            android:text="RadioButton" />
+            android:text="@string/radioButton_winningShot" />
 
         <RadioButton
             android:id="@+id/radioFault"
-            android:layout_width="wrap_content"
+            android:layout_width="118dp"
             android:layout_height="match_parent"
-            android:text="RadioButton" />
+            android:text="@string/radioButton_directFault" />
     </RadioGroup>
 
     <TextView
+
         android:id="@+id/ace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="88dp"
-        android:text="TextView"
+        android:text="@string/txt_Ace"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/switchAce"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pointfor" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/txt_endOfPoint"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winningreturn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

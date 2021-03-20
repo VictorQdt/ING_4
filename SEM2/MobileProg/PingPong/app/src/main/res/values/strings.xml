@@ -15,6 +15,7 @@
     <string name="takePhoto">Take a photo</string>
     <string name="save">Save</string>
 
+    <!--FRAGMENT NEW MATCH-->
     <string name="newMatch">New Match</string>
     <string name="player1">Player 1</string>
     <string name="player2">Player 2</string>
@@ -22,8 +23,7 @@
     <string name="firstServ">First service</string>
     <string name="start">Start !</string>
     <string name="next">Next</string>
-    <string name="pointfor">Point for :</string>
-    <string name="pointType">Type of point</string>
+
     <!--FRAGMENT MAP-->
     <string name="locate_string">Localisation : </string>
     <string name="hint_loc">Localisation</string>
@@ -33,19 +33,20 @@
     <string name="longitude">Longitude</string>
     <string name="tv_longitude">0.0</string>
 
+    <!-- GAME HISTORY-->
+    <string name="gameHistory_title">GAMES LIST</string>
+    <string name="gameHistory_question">Which Game ? Enter an ID : </string>
 
-
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_history">History</string>
-
-
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+    <!-- NEW POINT-->
+    <string name="newPointTitle">Gamer</string>
+    <string name="radioButton_Gamer1">Gamer 1</string>
+    <string name="radioButton_Gamer2">Gamer 2</string>
+    <string name="txt_pointFor">Point for :</string>
+    <string name="pointType">Type of point</string>
+    <string name="txtWiningReturn">Winning return</string>
+    <string name="txt_Ace">Ace</string>
+    <string name="radioButton_winningShot">Winning Shot</string>
+    <string name="radioButton_directFault">Direct Fault</string>
+    <string name="txt_endOfPoint">End Point</string>
 
 </resources>
