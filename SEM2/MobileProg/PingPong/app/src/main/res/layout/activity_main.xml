@@ -30,7 +30,7 @@
 
         <Button
             android:id="@+id/btn_newGame"
-            android:tag="newgame"
+            android:tag="newGameTag"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_marginBottom="30.0dip"
@@ -39,7 +39,7 @@
 
         <Button
             android:id="@+id/btn_history"
-            android:tag="history"
+            android:tag="historyTag"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:text="@string/btn_history"

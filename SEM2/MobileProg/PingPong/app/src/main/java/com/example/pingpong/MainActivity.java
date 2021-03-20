@@ -1,16 +1,11 @@
 package com.example.pingpong;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +14,14 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             if(String.valueOf(v.getTag()).equals("newgame")){
                 Singleton.getInstance().reset();
                 Intent i = new Intent(MainActivity.this,HomeFragment.class);
                 startActivity(i);
-            }else{
-                //nothing for the moment
+            }else if (String.valueOf(v.getTag()).equals("historyTag")){
+                Intent i = new Intent(MainActivity.this, History.class);
+                startActivity(i);
             }
         }
     };
