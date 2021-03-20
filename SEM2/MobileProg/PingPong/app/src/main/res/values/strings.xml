@@ -21,7 +21,7 @@
     <string name="nbOfSets">Number of sets</string>
     <string name="firstServ">First service</string>
     <string name="start">Start !</string>
-
+    <string name="next">Next</string>
     <!--FRAGMENT MAP-->
     <string name="locate_string">Localisation : </string>
     <string name="hint_loc">Localisation</string>

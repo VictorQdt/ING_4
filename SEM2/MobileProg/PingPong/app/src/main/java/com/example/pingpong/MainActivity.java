@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if(String.valueOf(v.getTag()).equals("newgame")){
-                Intent i = new Intent(MainActivity.this, GameActivity.class);
+                Singleton.getInstance().reset();
+                Intent i = new Intent(MainActivity.this,HomeFragment.class);
                 startActivity(i);
             }else{
                 //nothing for the moment

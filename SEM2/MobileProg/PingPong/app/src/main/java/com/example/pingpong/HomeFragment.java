@@ -1,67 +1,78 @@
 package com.example.pingpong;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
+import androidx.fragment.app.Fragment;
 
-public class HomeFragment extends Fragment {
+import static com.example.pingpong.R.id.nav_home;
+import static com.example.pingpong.R.id.nav_map;
+import static com.example.pingpong.R.id.nav_photo;
 
-    private TextView newMatch, player1, player2, nbOfSets, firstServ;
-    Button start;
-    private EditText name1, name2;
-    private RadioButton sets, service;
+public class HomeFragment extends AppCompatActivity {
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Singleton.getInstance().setPlayer1(name1.getText().toString());
-            Singleton.getInstance().setPlayer2(name2.getText().toString());
-            Singleton.getInstance().setSets(sets.isChecked());
-            Singleton.getInstance().setFirstService(service.isChecked());
-            Singleton.getInstance().setPointNumber(0);
-            FragmentTransaction fragmentTransaction = getActivity()
-                    .getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new NewPoint());
-            fragmentTransaction.commit();
-        }
-    };
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
 
-        View newMatchView = inflater.inflate(R.layout.fragment_home, container, false);
-        Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/2.ttf");
-        newMatch = (TextView) newMatchView.findViewById(R.id.newMatch);
-        newMatch.setTypeface(type);
-        player1 = (TextView) newMatchView.findViewById(R.id.player1);
-        player1.setTypeface(type);
-        player2 = (TextView) newMatchView.findViewById(R.id.player2);
-        player2.setTypeface(type);
-        nbOfSets = (TextView) newMatchView.findViewById(R.id.nbOfSets);
-        nbOfSets.setTypeface(type);
-        firstServ = (TextView) newMatchView.findViewById(R.id.firstServ);
-        firstServ.setTypeface(type);
-        start = (Button) newMatchView.findViewById(R.id.submit);
-        start.setTypeface(type);
-        sets = (RadioButton) newMatchView.findViewById(R.id.sets4);
-        service = (RadioButton) newMatchView.findViewById(R.id.player1Serv);
-        name1 = (EditText) newMatchView.findViewById(R.id.editTextTextPersonName1);
-        name2 = (EditText) newMatchView.findViewById(R.id.editTextTextPersonName2);
-        start.setOnClickListener(onClickListener);
-        return newMatchView;
+                    //Create the fragments
+                    switch (item.getItemId()) {
+                        case nav_home:
+                            if(!Singleton.getInstance().isStarted()) {
+                                Intent intent = getIntent();
+                                finish();
+                                startActivity(intent);
+                            }
+                            else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NewPoint()).commit();
+                            break;
+                        case nav_map:
+                            selectedFragment = new MapFragment();
+                            //Show the fragment selected
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                            break;
+                        case nav_photo:
+
+                            selectedFragment = new PhotoFragment();
+                            //Show the fragment selected
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                            break;
+                    }
+                    //Return a true boolean because we selected an item (the fragment)
+                    return true;
+                }
+            };
+
+    protected void onCreate (Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_home);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_view);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NewMatchFragment()).commit();
+
     }
 }

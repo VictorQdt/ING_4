@@ -7,6 +7,16 @@ public class Singleton {
     private boolean sets, firstService;
     private int pointNumber;
 
+    public boolean isStarted() {
+        return isStarted;
+    }
+
+    public void setStarted(boolean started) {
+        isStarted = started;
+    }
+
+    private boolean isStarted;
+
     public int getPointNumber() {
         return pointNumber;
     }
@@ -49,6 +59,10 @@ public class Singleton {
 
     private Singleton(){
 
+    }
+
+    public void reset (){
+        this.isStarted = false;
     }
 
     public static Singleton getInstance() {

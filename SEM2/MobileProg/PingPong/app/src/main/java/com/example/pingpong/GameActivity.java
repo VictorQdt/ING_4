@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -24,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         //We open the HomeFragment first by default
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PhotoFragment()).commit();
     }
 
     //Bottom Navigation Listener
@@ -37,18 +38,22 @@ public class GameActivity extends AppCompatActivity {
                     //Create the fragments
                     switch (item.getItemId()) {
                         case nav_home:
-                            selectedFragment = new HomeFragment();
+                            Intent i = new Intent(GameActivity.this, HomeFragment.class);
+                            startActivity(i);
                             break;
                         case nav_map:
                             selectedFragment = new MapFragment();
+                            //Show the fragment selected
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                             break;
                         case nav_photo:
                             selectedFragment = new PhotoFragment();
+                            //Show the fragment selected
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                             break;
                     }
 
-                    //Show the fragment selected
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
 
                     //Return a true boolean because we selected an item (the fragment)
                     return true;
