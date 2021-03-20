@@ -75,7 +75,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Cursor cursor = this.getReadableDatabase().rawQuery(strSQL, null);
         cursor.moveToNext();
         while (!cursor.isAfterLast()){
-            // MySQLiteGameHelper game = new MySQLiteGameHelper(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getInt(3));
+            //History game = new
         }
         return games;
     }
