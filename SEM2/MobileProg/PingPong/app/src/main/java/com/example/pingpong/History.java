@@ -12,20 +12,20 @@ public class History extends AppCompatActivity {
     private TextView gameInfos;
     private MySQLiteGameHelper mySQLiteGameHelper;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
 
-        //gameInfos = (TextView) findViewById(R.id.gameInfos);
+        gameInfos = (TextView) findViewById(R.id.gameInfos);
         mySQLiteGameHelper = new MySQLiteGameHelper(this);
 
         mySQLiteGameHelper.createGame(1, "Quidet", "Tété", 2, 0);
         mySQLiteGameHelper.createGame(2, "zob", "zoulou", 3, 1);
         mySQLiteGameHelper.createGame(3, "olala", "zola", 2, 1);
+
+        //gameInfos.setText(Singleton.getInstance().setPlayer1(name1.getText().toString()););
 
 
         mySQLiteGameHelper.close();

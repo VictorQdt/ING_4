@@ -37,7 +37,7 @@
 
     <!-- GAME HISTORY-->
     <string name="gameHistory_title">GAMES LIST</string>
-    <string name="gameHistory_question">Which Game ? Enter an ID : </string>
+    <string name="gameHistory_infos">hello</string>
 
     <!-- NEW POINT-->
     <string name="newPointTitle">Gamer</string>
@@ -51,4 +51,9 @@
     <string name="radioButton_directFault">Direct Fault</string>
     <string name="txt_endOfPoint">End Point</string>
 
+    <!-- END OF GAME-->
+    <string name="title_EndofGame">END OF GAME</string>
+    <string name="textBeforeWinner">The winner is: </string>
+    <string name="nameWinner">Jack</string>
+    <string name="endOfGame_BacktoMenu">Menu</string>
 </resources>
