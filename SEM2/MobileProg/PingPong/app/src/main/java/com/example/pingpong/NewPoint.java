@@ -9,20 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class NewPoint extends Fragment {
 
     TextView actualPlayer;
     Button nextButton;
+    Switch ace, winningReturn;
+    RadioButton player1, player2, direct, fault;
+
     Integer actualPoint = Singleton.getInstance().getPointNumber();
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            if(actualPoint != 3) Singleton.getInstance().setPointNumber(actualPoint+1);
-            else Singleton.getInstance().setPointNumber(0);
+            if(actualPoint != 4) Singleton.getInstance().setPointNumber(actualPoint+1);
+            else Singleton.getInstance().setPointNumber(1);
+            Singleton.getInstance().setTotalPoints(Singleton.getInstance().getTotalPoints() + 1);
             FragmentTransaction fragmentTransaction = getActivity()
                     .getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new NewPoint());
@@ -47,14 +53,26 @@ public class NewPoint extends Fragment {
         nextButton = (Button) v.findViewById(R.id.buttonNext);
         nextButton.setOnClickListener(onClickListener);
         actualPlayer = (TextView) v.findViewById(R.id.actualPlayer);
+
         // Inflate the layout for this fragment
-        if(Singleton.getInstance().isFirstService()){
-            if(actualPoint == 0 || actualPoint == 1) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
-            else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
-        }
-        else {
-            if(actualPoint == 0 || actualPoint == 1) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
-            else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
+        if(Singleton.getInstance().getTotalPoints() < 21){
+            if(Singleton.getInstance().isFirstService()){
+                if(actualPoint == 1 || actualPoint == 2) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
+                else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
+            }
+            else {
+                if(actualPoint == 1 || actualPoint == 2) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
+                else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
+            }
+        }else {
+            if(Singleton.getInstance().isFirstService()){
+                if(actualPoint%2 == 0) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
+                else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
+            }
+            else {
+                if(actualPoint%2 != 0) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
+                else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
+            }
         }
 
         return v;

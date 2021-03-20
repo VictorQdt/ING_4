@@ -5,7 +5,15 @@ public class Singleton {
 
     private String player1, player2;
     private boolean sets, firstService;
-    private int pointNumber;
+    private int pointNumber, totalPoints;
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
 
     public boolean isStarted() {
         return isStarted;
@@ -63,6 +71,12 @@ public class Singleton {
 
     public void reset (){
         this.isStarted = false;
+        this.player1 ="";
+        this.player2 ="";
+        this.sets = true;
+        this.firstService =true;
+        this.totalPoints = 0;
+        this.pointNumber = 1;
     }
 
     public static Singleton getInstance() {
