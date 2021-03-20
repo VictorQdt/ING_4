@@ -19,7 +19,8 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        gameInfos = (TextView) findViewById(R.id.gameInfos);
+
+        //gameInfos = (TextView) findViewById(R.id.gameInfos);
         mySQLiteGameHelper = new MySQLiteGameHelper(this);
 
         mySQLiteGameHelper.createGame(1, "Quidet", "Tété", 2, 0);

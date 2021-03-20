@@ -24,9 +24,6 @@
     <string name="start">Start !</string>
     <string name="next">Next</string>
 
-    <string name="pointfor">Point for :</string>
-    <string name="pointType">Type of point</string>
-
     <!--FRAGMENT MAP-->
     <string name="locate_string">Localisation : </string>
     <string name="hint_loc">Localisation</string>
@@ -39,5 +36,17 @@
     <!-- GAME HISTORY-->
     <string name="gameHistory_title">GAMES LIST</string>
     <string name="gameHistory_question">Which Game ? Enter an ID : </string>
+
+    <!-- NEW POINT-->
+    <string name="newPointTitle">Gamer</string>
+    <string name="radioButton_Gamer1">Gamer 1</string>
+    <string name="radioButton_Gamer2">Gamer 2</string>
+    <string name="txt_pointFor">Point for :</string>
+    <string name="pointType">Type of point</string>
+    <string name="txtWiningReturn">Winning return</string>
+    <string name="txt_Ace">Ace</string>
+    <string name="radioButton_winningShot">Winning Shot</string>
+    <string name="radioButton_directFault">Direct Fault</string>
+    <string name="txt_endOfPoint">End Point</string>
 
 </resources>
