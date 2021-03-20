@@ -24,6 +24,9 @@
     <string name="start">Start !</string>
     <string name="next">Next</string>
 
+    <string name="pointfor">Point for :</string>
+    <string name="pointType">Type of point</string>
+
     <!--FRAGMENT MAP-->
     <string name="locate_string">Localisation : </string>
     <string name="hint_loc">Localisation</string>
@@ -36,6 +39,5 @@
     <!-- GAME HISTORY-->
     <string name="gameHistory_title">GAMES LIST</string>
     <string name="gameHistory_question">Which Game ? Enter an ID : </string>
-    <string name="gameHistory_info"></string>
 
 </resources>
