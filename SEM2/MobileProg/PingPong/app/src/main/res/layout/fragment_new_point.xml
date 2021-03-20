@@ -67,6 +67,7 @@
         <RadioButton
             android:id="@+id/radioPlayer1"
             android:layout_width="97dp"
+            android:checked="true"
             android:layout_height="match_parent"
             android:text="@string/radioButton_Gamer1" />
 
@@ -116,6 +117,7 @@
             android:id="@+id/radioDirect"
             android:layout_width="125dp"
             android:layout_height="match_parent"
+            android:checked="true"
             android:text="@string/radioButton_winningShot" />
 
         <RadioButton
@@ -126,12 +128,11 @@
     </RadioGroup>
 
     <TextView
-
         android:id="@+id/ace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="27dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:text="@string/txt_Ace"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/switchAce"
