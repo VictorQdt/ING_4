@@ -47,7 +47,7 @@ public class Singleton {
         this.player2 = player2;
     }
 
-    private Singleton(){
+    Singleton(){
 
     }
 

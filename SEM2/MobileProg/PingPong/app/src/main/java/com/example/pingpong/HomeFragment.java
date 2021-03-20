@@ -15,11 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 public class HomeFragment extends Fragment {
 
     private TextView newMatch, player1, player2, nbOfSets, firstServ;
+    //private String p1,p2;
     Button start;
     private EditText name1, name2;
     private RadioButton sets, service;
@@ -27,11 +26,22 @@ public class HomeFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            //bdd = accessBDD.getWritableDatabase();
+
             Singleton.getInstance().setPlayer1(name1.getText().toString());
             Singleton.getInstance().setPlayer2(name2.getText().toString());
             Singleton.getInstance().setSets(sets.isChecked());
             Singleton.getInstance().setFirstService(service.isChecked());
             Singleton.getInstance().setPointNumber(0);
+
+            String p1 = Singleton.getInstance().getPlayer1();
+            String p2 = Singleton.getInstance().getPlayer2();
+
+            /**
+            String req = "insert into ppGame (player1, player2) values";
+            req += String.format("(%s,%s)", p1, p2);
+            bdd.execSQL(req);**/
+
             FragmentTransaction fragmentTransaction = getActivity()
                     .getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new NewPoint());
