@@ -140,5 +140,5 @@ public class MapFragment extends Fragment {
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
-    
+
 }
