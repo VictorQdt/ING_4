@@ -34,7 +34,6 @@ public class History extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListGamesFragment()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GameStatFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListGamesFragment()).commit();
     }
 }

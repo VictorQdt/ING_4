@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class GameStatFragment extends Fragment {
 
-    private TextView idGame;
+    private TextView idGame, pct_winning_shotsP1, pct_winning_returnsP1, pct_direct_faultsP1, pct_acesP1, TOTAL_win_pointsP1, pct_winning_shotsP2, pct_winning_returnsP2, pct_direct_faultsP2, pct_acesP2, TOTAL_win_pointsP2, stats_WinnerName, stats_Nameplayer1, stats_Nameplayer2;
     private BarChart chart;
     private TableLayout tableLayout;
     int[] color = new int[]{Color.RED, Color.CYAN, Color.BLUE};
@@ -61,6 +61,9 @@ public class GameStatFragment extends Fragment {
         player2DirectFaults = getArguments().getShort("player2DirectFaults");
         player1WinningReturns= getArguments().getShort("player1WinningReturns");
         player2WinningReturns = getArguments().getShort("player2WinningReturns");
+        CalculationTask calculation = new CalculationTask(player1points,player2points,player1WinningShots,player2WinningShots,player1Aces,player2Aces,player1DirectFaults,player2DirectFaults,player1WinningReturns,player2WinningReturns);
+        ArrayList<Short> list = new ArrayList<Short>();
+        calculation.execute();
     }
 
     @SuppressLint("WrongViewCast")
@@ -74,6 +77,19 @@ public class GameStatFragment extends Fragment {
         idGame = (TextView) view_stats.findViewById(R.id.id_STATS);
         tableLayout = (TableLayout) view_stats.findViewById(R.id.tableLayout);
         chart = (BarChart) view_stats.findViewById(R.id.chart);
+        pct_winning_shotsP1 = (TextView)view_stats.findViewById(R.id.pct_winning_shotsP1);
+        pct_winning_shotsP2 = (TextView)view_stats.findViewById(R.id.pct_winning_shotsP2);
+        pct_winning_returnsP1 = (TextView)view_stats.findViewById(R.id.pct_winning_returnsP1);
+        pct_winning_returnsP2 = (TextView)view_stats.findViewById(R.id.pct_winning_returnsP2);
+        pct_direct_faultsP1 = (TextView)view_stats.findViewById(R.id.pct_direct_faultsP1);
+        pct_direct_faultsP2 = (TextView)view_stats.findViewById(R.id.pct_direct_faultsP2);
+        pct_acesP1 = (TextView)view_stats.findViewById(R.id.pct_acesP1);
+        pct_acesP2 = (TextView)view_stats.findViewById(R.id.pct_acesP2);
+        TOTAL_win_pointsP1 = (TextView)view_stats.findViewById(R.id.TOTAL_win_pointsP1);
+        TOTAL_win_pointsP2 = (TextView)view_stats.findViewById(R.id.TOTAL_win_pointsP2);
+        stats_Nameplayer1 = (TextView)view_stats.findViewById(R.id.stats_Nameplayer1);
+        stats_Nameplayer2 = (TextView)view_stats.findViewById(R.id.stats_Nameplayer2);
+        stats_WinnerName = (TextView)view_stats.findViewById(R.id.stats_WinnerName);
 
         BarDataSet barDataSet = new BarDataSet(data(), "bar set");
         barDataSet.setColors(color);
@@ -92,10 +108,10 @@ public class GameStatFragment extends Fragment {
         return dataVal;
     }
 
-    private class CalculationTask extends AsyncTask<Short, Void, List<Short>>{
+    private class CalculationTask extends AsyncTask<Short, Void, ArrayList<Short>>{
 
         short player1points, player2points, player1WinningShots, player2WinningShots, player1Aces, player2Aces, player1DirectFaults, player2DirectFaults, player1WinningReturns, player2WinningReturns;
-
+        ArrayList<Short> list;
         public CalculationTask(short player1points, short player2points, short player1WinningShots, short player2WinningShots,
         short player1Aces, short player2Aces, short player1DirectFaults, short player2DirectFaults, short player1WinningReturns, short player2WinningReturns){
             this.player1points =player1points;
@@ -111,9 +127,38 @@ public class GameStatFragment extends Fragment {
         };
 
         @Override
-        protected List<Short> doInBackground(Short... shorts) {
-            return null;
+        protected ArrayList<Short> doInBackground(Short... shorts) {
+            ArrayList<Short> list2 = new ArrayList<>();
+            list2.add((short) (player1WinningShots*100/player1points));
+            list2.add((short) (player1WinningReturns*100/player1points));
+            list2.add((short) (player1DirectFaults*100/player1points));
+            list2.add((short) (player1Aces*100/player1points));
+            list2.add((short) (player2WinningShots*100/player1points));
+            list2.add((short) (player2WinningReturns*100/player1points));
+            list2.add((short) (player2DirectFaults*100/player1points));
+            list2.add((short) (player2Aces*100/player1points));
+            this.list = list2;
+            return list2;
         }
+
+        @Override
+        protected void onPostExecute(ArrayList<Short> shorts) {
+            super.onPostExecute(list);
+            pct_winning_shotsP1.setText(list.get(0).toString());
+            pct_winning_returnsP1.setText(list.get(1).toString());
+            pct_direct_faultsP1.setText(list.get(2).toString());
+            pct_acesP1.setText(shorts.get(3).toString());
+            TOTAL_win_pointsP1.setText(String.valueOf(player1points));
+            pct_winning_shotsP2.setText(list.get(4).toString());
+            pct_winning_returnsP2.setText(list.get(5).toString());
+            pct_direct_faultsP2.setText(list.get(6).toString());
+            pct_acesP2.setText(list.get(7).toString());
+            TOTAL_win_pointsP2.setText(String.valueOf(player2points));
+            stats_WinnerName.setText(winner);
+            stats_Nameplayer1.setText(player1);
+            stats_Nameplayer2.setText(player2);
+        }
+
     }
 
 }
