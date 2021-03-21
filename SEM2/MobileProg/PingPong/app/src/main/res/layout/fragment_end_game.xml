@@ -24,7 +24,6 @@
         android:id="@+id/imageViewWin"
         android:layout_width="149dp"
         android:layout_height="216dp"
-        android:gravityin="center"
         android:src="@drawable/winner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
