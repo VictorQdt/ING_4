@@ -90,20 +90,6 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Log.i("DATABASE", "startGame invoked");
     }
 
-    public boolean addData(String item1) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, item1);
-
-        long result = db.insert(TABLE_NAME, null, contentValues);
-
-        //if date as inserted incorrectly it will return -1
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public Cursor getListContents(){
         SQLiteDatabase db = this.getWritableDatabase();
