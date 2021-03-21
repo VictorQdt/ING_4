@@ -18,7 +18,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/Lat"
+                android:id="@+id/latitude"
                 android:text="@string/latitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/Long"
+                android:id="@+id/longitude"
                 android:text="@string/longitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,13 +75,5 @@
         android:id="@+id/google_map"
         tools:context=".MapFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
-
-    <!--
-    <fragment
-        android:id="@+id/google_map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
-        -->
 
 </RelativeLayout>

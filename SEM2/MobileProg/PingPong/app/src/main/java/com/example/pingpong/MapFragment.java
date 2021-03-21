@@ -1,4 +1,3 @@
-
 package com.example.pingpong;
 
 import android.Manifest;
@@ -34,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,35 +43,12 @@ import java.util.Locale;
 
 public class MapFragment extends Fragment {
 
-    //private GoogleMap mMap;
-    //private LocationManager locationManager;
-    //private String provider;
-
     private TextView tv_longitude, tv_latitude;
     private FusedLocationProviderClient locClient;
     private SupportMapFragment supportMapFragment;
-
-    /**
-     * private boolean geoLocPermit = false;
-     * private boolean geoLocRequest = false;
-     * private final int PERMISSION_REQUEST_LOC = 0;
-     * private final int GPS_REQUEST_CODE = 1;
-     **/
+    private GoogleMap mMap;
 
     Geocoder geocoder;
-    List<Address> addresses;
-
-    /**
-    // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-    addresses = geocoder.getFromLocation(tv_longitude, tv_latitude, 1);
-    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-    String city = addresses.get(0).getLocality();
-    String state = addresses.get(0).getAdminArea();
-    String country = addresses.get(0).getCountryName();
-    String postalCode = addresses.get(0).getPostalCode();
-    String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
-     **/
-
 
     @Nullable
     @Override
@@ -86,8 +63,6 @@ public class MapFragment extends Fragment {
         tv_latitude = (TextView) map_view.findViewById(R.id.tv_lat);
         geocoder = new Geocoder(getContext(), Locale.getDefault());
 
-
-
         //Initialize location Client
         locClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
@@ -99,46 +74,17 @@ public class MapFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Check condition
-                if (ContextCompat.checkSelfPermission(getActivity()
-                        , Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED &&
-                        ContextCompat.checkSelfPermission(getActivity()
-                                , Manifest.permission.ACCESS_COARSE_LOCATION)
-                                == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     // When permission is granted : call method
                     getCurrentLocation();
                 } else {
-                    // When permission is not granted
-                    // Request permission
+                    // When permission is not granted : request permission
                     requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION
                             , Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
                 }
             }
         });
-
-        //Asynchchronous map
-        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                //When map is charged
-                mMap.setOnMapClickListener(latLng -> {
-                    // When clicking on map
-                    // Initialize options marker
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    // Position marker
-                    markerOptions.position(latLng);
-                    // Titre du marker
-                    markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-                    // Clear marker
-                    mMap.clear();
-                    // Zoom
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                    // Add marker
-                    mMap.addMarker(markerOptions);
-                });
-            }
-        });
-
         //Return view
         return map_view;
     }
@@ -171,34 +117,15 @@ public class MapFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<Location> task) {
                     // Initialize location
-                    Location loc = task.getResult();
+                    Location currentLoc = task.getResult();
                     // Check conditions
-                    if (loc != null) {
+                    if (currentLoc != null) {
                         // Loc is not null then fix latitude and longitude
-                        tv_longitude.setText(String.valueOf(loc.getLongitude()));
-                        tv_latitude.setText(String.valueOf(loc.getLatitude()));
+                        tv_longitude.setText(String.valueOf(currentLoc.getLongitude()));
+                        tv_latitude.setText(String.valueOf(currentLoc.getLatitude()));
+                        //moveCamera(new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude()), 15f);
                     } else {
-                        // If location result is null
-                        // Initialize loc request
-                        LocationRequest locationRequest = new LocationRequest()
-                                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                                .setInterval(10000)
-                                .setFastestInterval(1000)
-                                .setNumUpdates(1);
-
-                        // Initialize location callback
-                        LocationCallback locationCallback = new LocationCallback() {
-                            @Override
-                            public void onLocationResult(LocationResult locationResult) {
-                                // Initialize location
-                                Location loc1 = locationResult.getLastLocation();
-                                //Set longitude & latitude
-                                tv_longitude.setText(String.valueOf(loc.getLongitude()));
-                                tv_latitude.setText(String.valueOf(loc.getLatitude()));
-                            }
-                        };
-                        // Request location updates
-                        locClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+                        Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -209,4 +136,10 @@ public class MapFragment extends Fragment {
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
+
+    /**
+    private void moveCamera(LatLng latLng, float zoom) {
+        //Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+    }**/
 }
