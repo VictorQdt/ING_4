@@ -7,16 +7,16 @@
     android:background="@android:color/holo_green_dark">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="81dp"
-        android:layout_marginBottom="68dp"
         android:gravity="center"
         android:text="@string/title_EndofGame"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageViewWin"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -24,12 +24,12 @@
         android:id="@+id/imageViewWin"
         android:layout_width="149dp"
         android:layout_height="216dp"
-        android:gravityin="center"
         android:src="@drawable/winner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="167dp" />
+        tools:layout_editor_absoluteY="167dp"
+        android:contentDescription="Img" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
