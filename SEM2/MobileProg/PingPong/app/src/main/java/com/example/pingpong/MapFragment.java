@@ -57,6 +57,7 @@ public class MapFragment extends Fragment {
         //Initialize view
         View map_view = inflater.inflate(R.layout.fragment_map, container, false);
 
+
         //Initialize fields
         Button btn_loc = (Button) map_view.findViewById(R.id.btn_getLoc);
         tv_longitude = (TextView) map_view.findViewById(R.id.tv_long);
@@ -68,6 +69,7 @@ public class MapFragment extends Fragment {
 
         //Initialize fragment map
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
+        
 
         // Button Location Listener
         btn_loc.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +110,7 @@ public class MapFragment extends Fragment {
     private void getCurrentLocation() {
         // Initialize location manager
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
+        mMap.setMyLocationEnabled(true);
         // Check conditions
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
