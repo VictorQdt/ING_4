@@ -51,6 +51,7 @@
         <RadioButton
             android:id="@+id/radioPlayer1"
             android:layout_width="97dp"
+            android:checked="true"
             android:layout_height="match_parent"
             android:text="@string/radioButton_Gamer1" />
 
@@ -111,6 +112,7 @@
             android:id="@+id/radioDirect"
             android:layout_width="125dp"
             android:layout_height="match_parent"
+            android:checked="true"
             android:text="@string/radioButton_winningShot" />
 
         <RadioButton
