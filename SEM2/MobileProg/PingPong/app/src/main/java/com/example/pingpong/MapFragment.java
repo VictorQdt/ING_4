@@ -46,8 +46,8 @@ public class MapFragment extends Fragment {
     private TextView tv_longitude, tv_latitude;
     private FusedLocationProviderClient locClient;
     private SupportMapFragment supportMapFragment;
-    private GoogleMap mMap;
 
+    GoogleMap mMap;
     Geocoder geocoder;
 
     @Nullable
@@ -106,10 +106,10 @@ public class MapFragment extends Fragment {
 
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
-        // Initialize location manager
+        // Initialize location manager : provide the access to the system location service
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-        // Check conditions
+        // Check conditions GPS & Network
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             // When Location service is enabled : get last location
@@ -123,23 +123,22 @@ public class MapFragment extends Fragment {
                         // Loc is not null then fix latitude and longitude
                         tv_longitude.setText(String.valueOf(currentLoc.getLongitude()));
                         tv_latitude.setText(String.valueOf(currentLoc.getLatitude()));
-                        //moveCamera(new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude()), 15f);
+
+                        /**
+                        LatLng coord = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(coord).title("Last position"));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coord, 15));**/
+
                     } else {
                         Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         } else {
-            // When location service is not enabled
-            // Open location setting
+            // When location service is not enabled : open location setting
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
-
-    /**
-    private void moveCamera(LatLng latLng, float zoom) {
-        //Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-    }**/
+    
 }
