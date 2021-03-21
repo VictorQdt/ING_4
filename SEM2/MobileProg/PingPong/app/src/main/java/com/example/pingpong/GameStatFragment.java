@@ -2,6 +2,7 @@ package com.example.pingpong;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -37,13 +39,28 @@ public class GameStatFragment extends Fragment {
     private TableLayout tableLayout;
     int[] color = new int[]{Color.RED, Color.CYAN, Color.BLUE};
 
-
+    private String player1, player2, winner;
+    private short player1points, player2points, player1WinningShots, player2WinningShots,
+    player1Aces, player2Aces, player1DirectFaults, player2DirectFaults, player1WinningReturns, player2WinningReturns;
     public GameStatFragment(){ }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        player1 = getArguments().getString("player1");
+        player2 = getArguments().getString("player2");
+        winner = getArguments().getString("winner");
+        player1points = getArguments().getShort("player1points");
+        player2points = getArguments().getShort("player2points");
+        player1WinningShots = getArguments().getShort("player1WinningShots");
+        player2WinningShots = getArguments().getShort("player2WinningShots");
+        player1Aces = getArguments().getShort("player1Aces");
+        player2Aces = getArguments().getShort("player2Aces");
+        player1DirectFaults = getArguments().getShort("player1DirectFaults");
+        player2DirectFaults = getArguments().getShort("player2DirectFaults");
+        player1WinningReturns= getArguments().getShort("player1WinningReturns");
+        player2WinningReturns = getArguments().getShort("player2WinningReturns");
     }
 
     @SuppressLint("WrongViewCast")
@@ -75,6 +92,28 @@ public class GameStatFragment extends Fragment {
         return dataVal;
     }
 
+    private class CalculationTask extends AsyncTask<Short, Void, List<Short>>{
 
+        short player1points, player2points, player1WinningShots, player2WinningShots, player1Aces, player2Aces, player1DirectFaults, player2DirectFaults, player1WinningReturns, player2WinningReturns;
+
+        public CalculationTask(short player1points, short player2points, short player1WinningShots, short player2WinningShots,
+        short player1Aces, short player2Aces, short player1DirectFaults, short player2DirectFaults, short player1WinningReturns, short player2WinningReturns){
+            this.player1points =player1points;
+            this.player2points = player2points;
+            this.player1WinningShots = player1WinningShots;
+            this.player2WinningShots =player2WinningShots;
+            this.player1Aces = player1Aces;
+            this.player2Aces = player2Aces;
+            this.player1DirectFaults = player1DirectFaults;
+            this.player2DirectFaults = player2DirectFaults;
+            this.player1WinningReturns = player1WinningReturns;
+            this.player2WinningReturns = player2WinningReturns;
+        };
+
+        @Override
+        protected List<Short> doInBackground(Short... shorts) {
+            return null;
+        }
+    }
 
 }

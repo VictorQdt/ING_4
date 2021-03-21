@@ -78,6 +78,7 @@ public class ListGamesFragment extends Fragment {
                        Bundle bundle = new Bundle();
                        bundle.putString("player1",data.getString(1));
                        bundle.putString("player2",data.getString(2));
+                       bundle.putString("winner", data.getString(3));
                        bundle.putShort("player1points",data.getShort(5));
                        bundle.putShort("player2points",data.getShort(6));
                        bundle.putShort("player1WinningShots",data.getShort(9));
