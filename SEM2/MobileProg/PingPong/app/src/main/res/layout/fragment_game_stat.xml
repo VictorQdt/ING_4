@@ -1,42 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameStatFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/title_stats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:gravity="center"
-            android:text="@string/title_stats"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="16dp" />
+    <TextView
+        android:id="@+id/title_stats"
+        android:layout_width="173dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/title_stats"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="28dp" />
 
-        <TextView
-            android:id="@+id/gameID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/game_id_stats"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="16dp" />
+    <TextView
+        android:id="@+id/gameID"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/game_id_stats"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="203dp" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/stats_WinnerName"
+        android:layout_width="180dp"
+        android:layout_height="26dp"
+        android:gravity="left"
+        android:text="@string/stats_WinnerName"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/stats_Winner"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="113dp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/stats_Winner"
+        android:layout_width="163dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:gravity="left"
+        android:text="@string/stats_Winner"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="111dp" />
+
+    <TableLayout
+        android:layout_width="402dp"
+        android:layout_height="309dp"
+        android:layout_marginTop="68dp"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats_WinnerName"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="3dp">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/id_STATS"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="@string/stats_table"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/stats_Nameplayer1"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="@string/stats_Nameplayer1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/stats_Nameplayer2"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="@string/stats_Nameplayer2"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="@string/pct_winning_shots"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pct_winning_shotsP1"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/pct_winning_shotsP2"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/pct_direct_faults"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="@string/pct_direct_faults"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pct_direct_faultsP1"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/pct_direct_faultsP2"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/pct_aces"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="@string/pct_aces"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pct_acesP1"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/pct_acesP2"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TOTAL_win_points"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="@string/TOTAL_win_points"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TOTAL_win_pointsP1"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/TOTAL_win_pointsP2"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

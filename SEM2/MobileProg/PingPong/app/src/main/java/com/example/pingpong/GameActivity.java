@@ -56,8 +56,6 @@ public class GameActivity extends AppCompatActivity {
                             break;
                     }
 
-
-
                     //Return a true boolean because we selected an item (the fragment)
                     return true;
                 }

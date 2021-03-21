@@ -60,7 +60,18 @@
 
     <!-- STATS FRAG -->
     <string name="title_stats">STATS of : </string>
-    <string name="game_id_stats">Game ID</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="game_id_stats">Game_ID</string>
+    <string name="stats_Nameplayer1">Name1</string>
+    <string name="stats_Nameplayer2">Name2</string>
+    <string name="stats_Winner">The winner is :</string>
+    <string name="stats_WinnerName">Winner_Name</string>
+    <string name="stats_table">STATS</string>
+    <string name="nb_winning_shots">NB Winning Shots</string>
+    <string name="nb_direct_faults">NB Direct Faults</string>
+    <string name="nb_aces">NB Aces</string>
+    <string name="nb_win_points">NB Win Points</string>
+    <string name="pct_winning_shots">% Winning Shots</string>
+    <string name="pct_direct_faults">% Direct Faults</string>
+    <string name="pct_aces">% Aces</string>
+    <string name="TOTAL_win_points">TOTAL WIN POINTS</string>
 </resources>
