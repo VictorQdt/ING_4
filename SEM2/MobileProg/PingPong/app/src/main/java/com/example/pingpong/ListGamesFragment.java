@@ -31,15 +31,9 @@ import java.util.Date;
  */
 public class ListGamesFragment extends Fragment {
 
-    // Form
-    EditText addItem;
-    Button btnAddItem;
+
     Calendar cal = Calendar.getInstance();
-
-    // List
     ListView listViewGames;
-
-    //Db
     MySQLiteGameHelper mySQLiteGameHelper;
 
 
@@ -122,13 +116,9 @@ public class ListGamesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("allaal");
-
         // Inflate the layout for this fragment
         View newListGames = inflater.inflate(R.layout.fragment_list_games, container, false);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/2.ttf");
-        addItem = (EditText) newListGames.findViewById(R.id.addItem);
-        btnAddItem = (Button) newListGames.findViewById(R.id.btnAddItem);
         listViewGames = (ListView) newListGames.findViewById(R.id.listViewGames);
         addDataList();
         return newListGames;

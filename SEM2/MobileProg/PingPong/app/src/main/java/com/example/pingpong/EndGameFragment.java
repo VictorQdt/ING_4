@@ -38,6 +38,7 @@ public class EndGameFragment extends Fragment {
 
     /**
      * View of the fragment (set the winner's name though the Singleton)
+     * Go back to menu
      * @param inflater
      * @param container
      * @param savedInstanceState
