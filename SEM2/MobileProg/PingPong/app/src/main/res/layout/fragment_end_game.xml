@@ -31,15 +31,6 @@
         tools:layout_editor_absoluteY="167dp"
         android:contentDescription="Img" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navigation" />
-
     <TextView
         android:id="@+id/textBeforeWinner"
         android:layout_width="wrap_content"

@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PingPong">
         <activity android:name=".GameActivity"></activity>
-        <activity android:name=".HomeFragment"></activity>
+        <activity android:name=".HomeActivity"></activity>
 
         <activity android:name=".History" />
 

@@ -3,8 +3,6 @@ package com.example.pingpong;
 public class Singleton {
     private static Singleton uniqueInstance;
 
-
-
     public short getPlayer1WonSets() {
         return player1WonSets;
     }
@@ -179,7 +177,7 @@ public class Singleton {
         this.player2 = player2;
     }
 
-    Singleton(){
+    private Singleton(){
 
     }
 

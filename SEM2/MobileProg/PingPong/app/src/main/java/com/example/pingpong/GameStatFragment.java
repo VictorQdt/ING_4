@@ -17,7 +17,7 @@ public class GameStatFragment extends Fragment {
 
     private TextView idGame;
 
-    public GameStatFragment(String game){
+    public GameStatFragment(){
 
     }
 

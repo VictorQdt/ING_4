@@ -17,7 +17,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Jack.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "JackyTable";
+    private static final String TABLE_NAME = "ppGame";
     private static final String COL1 = "ID";
     private static final String COL2 = "ITEM1";
 
