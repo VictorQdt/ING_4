@@ -1,9 +1,10 @@
 package com.example.pingpong;
 
+/**
+ *
+ */
 public class Singleton {
     private static Singleton uniqueInstance;
-
-
 
     public short getPlayer1WonSets() {
         return player1WonSets;

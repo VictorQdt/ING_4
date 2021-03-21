@@ -20,18 +20,23 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.Calendar;
 
+/**
+ * Fragment for creating a new Game
+ */
 public class NewMatchFragment extends Fragment {
 
+    //properties
     private TextView newMatch, player1, player2, nbOfSets, firstServ;
-    //private String p1,p2;
     Button start;
     private EditText name1, name2;
     private RadioButton sets, service;
 
+    /**
+     * Listener for all properties when creating a game
+     */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //bdd = accessBDD.getWritableDatabase();
 
             Singleton.getInstance().setPlayer1(name1.getText().toString());
             Singleton.getInstance().setPlayer2(name2.getText().toString());
@@ -39,14 +44,9 @@ public class NewMatchFragment extends Fragment {
             Singleton.getInstance().setFirstService(service.isChecked());
             Singleton.getInstance().setPointNumber((short) 1);
             Singleton.getInstance().setStarted(true);
-            String p1 = Singleton.getInstance().getPlayer1();
-            String p2 = Singleton.getInstance().getPlayer2();
+            //String p1 = Singleton.getInstance().getPlayer1();
+            //String p2 = Singleton.getInstance().getPlayer2();
             Singleton.getInstance().setTimestamp(System.currentTimeMillis()/1000);
-
-            /**
-             String req = "insert into ppGame (player1, player2) values";
-             req += String.format("(%s,%s)", p1, p2);
-             bdd.execSQL(req);**/
 
             FragmentTransaction fragmentTransaction = getActivity()
                     .getSupportFragmentManager().beginTransaction();
@@ -55,6 +55,13 @@ public class NewMatchFragment extends Fragment {
         }
     };
 
+    /**
+     * View of the fragment NewGame
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

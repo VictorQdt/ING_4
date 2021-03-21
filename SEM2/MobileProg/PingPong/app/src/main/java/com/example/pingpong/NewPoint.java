@@ -13,8 +13,12 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+/**
+ * Fragment NewPoint for register every point of the match
+ */
 public class NewPoint extends Fragment {
 
+    //properties
     TextView actualPlayer;
     Button nextButton;
     Switch ace, winningReturn;
