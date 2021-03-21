@@ -1,5 +1,6 @@
 package com.example.pingpong;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,15 +15,18 @@ import java.util.List;
 
 public class MySQLiteGameHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Game.db";
+    private static final String DATABASE_NAME = "Jack.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String TABLE_NAME = "JackyTable";
+    private static final String COL1 = "ID";
+    private static final String COL2 = "ITEM1";
 
     /**
      * Constructor
      *
      * @param context
      */
-    public MySQLiteGameHelper(@Nullable Context context) {
+    public MySQLiteGameHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -33,14 +37,10 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String strSql = "create table ppGame ("
-                + " idGame TEXT PRIMARY KEY AUTOINCREMENT,"
-                + " player1 TEXT NOT NULL,"
-                + " player2 TEXT NOT NULL,"
-                + " nbOfSets INTEGER NOT NULL,"
-                + " firstServ INTEGER NOT NULL"
-                + ")";
-        sqLiteDatabase.execSQL( strSql );
+        String createTable = "CREATE TABLE " + TABLE_NAME +
+                " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " ITEM1 TEXT)";
+        sqLiteDatabase.execSQL(createTable);
         Log.i("DATABASE", "onCreate invoked");
     }
 
@@ -59,6 +59,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Log.i("DATABASE", "onCreate invoked");
     }
 
+    /**
     public void createGame(Integer idGame, String player1, String player2, Integer nbOfSets, Integer firstServ ) {
         player1 = player1.replace("'", "''");
         player2= player2.replace("'", "''");
@@ -66,17 +67,26 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
                 + idGame + ", " + player1 + "','" + player2 + "', " + nbOfSets + "," + firstServ + ")";
         this.getWritableDatabase().execSQL( strSQL );
         Log.i("DATABASE", "startGame invoked");
+    }**/
+
+    public boolean addData(String item1) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, item1);
+
+        long result = db.insert(TABLE_NAME, null, contentValues);
+
+        //if date as inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public List<MySQLiteGameHelper> listGames(){
-        List<MySQLiteGameHelper> games = new ArrayList<>();
-
-        String strSQL = "select * from ppGame";
-        Cursor cursor = this.getReadableDatabase().rawQuery(strSQL, null);
-        cursor.moveToNext();
-        while (!cursor.isAfterLast()){
-            //History game = new
-        }
-        return games;
+    public Cursor getListContents(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        return data;
     }
 }

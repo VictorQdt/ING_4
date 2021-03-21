@@ -36,7 +36,7 @@
     <string name="tv_longitude">0.0</string>
 
     <!-- GAME HISTORY-->
-    <string name="gameHistory_title">GAMES LIST</string>
+    <string name="gameHistory_title">LIST OF PAST GAMES</string>
     <string name="gameHistory_infos">hello</string>
 
     <!-- NEW POINT-->
@@ -56,4 +56,11 @@
     <string name="textBeforeWinner">The winner is: </string>
     <string name="nameWinner">Jack</string>
     <string name="endOfGame_BacktoMenu">Menu</string>
+    <string name="hint_game_1">Game 1</string>
+
+    <!-- STATS FRAG -->
+    <string name="title_stats">STATS of : </string>
+    <string name="game_id_stats">Game ID</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
