@@ -41,8 +41,12 @@ import com.google.android.gms.tasks.Task;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Display map inside a fragment
+ */
 public class MapFragment extends Fragment {
 
+    //Properties
     private TextView tv_longitude, tv_latitude;
     private FusedLocationProviderClient locClient;
     private SupportMapFragment supportMapFragment;
@@ -56,7 +60,6 @@ public class MapFragment extends Fragment {
 
         //Initialize view
         View map_view = inflater.inflate(R.layout.fragment_map, container, false);
-
 
         //Initialize fields
         Button btn_loc = (Button) map_view.findViewById(R.id.btn_getLoc);
@@ -91,6 +94,13 @@ public class MapFragment extends Fragment {
         return map_view;
     }
 
+    /**
+     * Callback for the result from requesting permissions.
+     * This method is invoked for every call on requestPermissions(String[], int).
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -106,13 +116,15 @@ public class MapFragment extends Fragment {
         // END_INCLUDE(onRequestPermissionsResult)
     }
 
+    /**
+     * Get the current locationof the android device
+     */
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
         // Initialize location manager : provide the access to the system location service
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         // Check conditions GPS & Network
-
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             // When Location service is enabled : get last location

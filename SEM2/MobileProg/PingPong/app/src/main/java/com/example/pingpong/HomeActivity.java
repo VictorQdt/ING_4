@@ -64,7 +64,6 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * Create the Layout of activity
-     *
      * @param savedInstanceState
      */
     protected void onCreate(Bundle savedInstanceState) {

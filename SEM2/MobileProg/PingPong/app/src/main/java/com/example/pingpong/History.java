@@ -18,17 +18,10 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity empty for the 2 fragments ListGames (default) & Statistics
+ */
 public class History extends AppCompatActivity {
-
-    // Form
-    private EditText addItem;
-    private Button btnAddItem;
-
-    // List
-    private ListView listViewGames;
-
-    //Db
-    private MySQLiteGameHelper mySQLiteGameHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

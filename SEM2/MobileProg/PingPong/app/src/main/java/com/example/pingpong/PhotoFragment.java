@@ -39,6 +39,13 @@ public class PhotoFragment extends Fragment {
     private String photoPath = null;
     private Bitmap img;
 
+    /**
+     * Creation of the photo fragment view
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
