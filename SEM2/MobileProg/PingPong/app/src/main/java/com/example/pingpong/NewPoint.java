@@ -25,7 +25,12 @@ public class NewPoint extends Fragment {
     RadioButton player1, player2, direct, fault;
 
     short actualPoint = Singleton.getInstance().getPointNumber();
-
+    /**
+     * The onclick listener of the button that adds the points to the Singleton.
+     * It checks every time if a set has been won or if it was the last point of the game.
+     * If so, it calls the victory function.
+     * It also handles the view of who is serving.
+     */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -100,6 +105,9 @@ public class NewPoint extends Fragment {
                 }
             }
 
+            /**
+             * If it is the end of the game, sets the winners name and calls victory
+             */
             if(Singleton.getInstance().isSets() && Singleton.getInstance().getPlayer1WonSets() == 1){
                 Singleton.getInstance().setWinnersName(Singleton.getInstance().getPlayer1());
                 victory();
@@ -132,6 +140,9 @@ public class NewPoint extends Fragment {
 
     }
 
+    /**
+     * Pushes to the database all the data about the match. To do so, it retrieves the data from the Singleton
+     */
     private void victory(){
         short nbOfSets;
         if(Singleton.getInstance().isSets()) nbOfSets = 4;
@@ -148,6 +159,13 @@ public class NewPoint extends Fragment {
         //Singleton.getInstance().reset();
     }
 
+    /**
+     * It creates the view and sets the right players name for the service
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

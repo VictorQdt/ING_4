@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * Create the Layout of activity
+     * Inflates the New Match Layout
      *
      * @param savedInstanceState
      */

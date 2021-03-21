@@ -33,6 +33,7 @@ public class NewMatchFragment extends Fragment {
 
     /**
      * Listener for all properties when creating a game
+     * On click sends to the Singleton instance basic informations of the match and switch to the New Point fragment
      */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override

@@ -55,6 +55,9 @@ public class ListGamesFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * Function to retrieve data from the database to generate the clickable list of the past matches
+     */
     private void addDataList() {
         ArrayList<String> theList = new ArrayList<>();
         Cursor data = mySQLiteGameHelper.getListContents();
@@ -71,6 +74,14 @@ public class ListGamesFragment extends Fragment {
                listViewGames.setAdapter(listAdapter);
                // Listener of the list og games
                listViewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                   /**
+                    * create a bundle for each clickable element with the data of the associated match and replace the fragement with
+                    * the gamestat fragment
+                    * @param adapterView
+                    * @param view
+                    * @param positionView
+                    * @param rowId
+                    */
                    @Override
                    public void onItemClick(AdapterView<?> adapterView, View view, int positionView, long rowId) {
                        //Toast.makeText(History.this, "Position item : " + listAdapter.getItem(i) , Toast.LENGTH_SHORT).show();

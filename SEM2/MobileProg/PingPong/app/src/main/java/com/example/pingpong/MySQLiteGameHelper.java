@@ -31,7 +31,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Changed in BDD
+     * Creates the table ppGame
      *
      * @param sqLiteDatabase
      */
@@ -62,7 +62,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Changed in Version
+     * Drops the table
      *
      * @param sqLiteDatabase
      * @param i
@@ -76,7 +76,26 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Log.i("DATABASE", "onCreate invoked");
     }
 
-
+    /**
+     * Inserts in the table the informations of a match
+     * @param timestamp
+     * @param player1
+     * @param player2
+     * @param winner
+     * @param nbOfSets
+     * @param player1points
+     * @param player2points
+     * @param player1WonSets
+     * @param player2WonSets
+     * @param player1WinningShots
+     * @param player2WinningShots
+     * @param player1Aces
+     * @param player2Aces
+     * @param player1DirectFaults
+     * @param player2DirectFaults
+     * @param player1WinningReturns
+     * @param player2WinningReturns
+     */
     public void createGame(Long timestamp, String player1, String player2, String winner,Short  nbOfSets, Short player1points, Short player2points,
                     Short player1WonSets, Short player2WonSets, Short player1WinningShots, Short player2WinningShots, Short player1Aces,
                            Short player2Aces, Short player1DirectFaults, Short player2DirectFaults, Short player1WinningReturns, Short player2WinningReturns) {
@@ -90,7 +109,10 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Log.i("DATABASE", "startGame invoked");
     }
 
-
+    /**
+     * Retrieve the data from the table ppGame
+     * @return
+     */
     public Cursor getListContents(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);

@@ -1,7 +1,7 @@
 package com.example.pingpong;
 
 /**
- *
+ * Class of a Singleton. It is a unique instance of an object accessible through the whole app with the getters and setters.
  */
 public class Singleton {
     private static Singleton uniqueInstance;
@@ -180,6 +180,9 @@ public class Singleton {
         this.player2 = player2;
     }
 
+    /**
+     * We put the constructor in private to make sure we only have one instance of the singleton
+     */
     private Singleton(){
 
     }
@@ -221,6 +224,9 @@ public class Singleton {
     private short player1WinningReturns;
     private short player2WinningReturns;
 
+    /**
+     * Resets all the values to default
+     */
     public void reset (){
         this.isStarted = false;
         this.player1 ="";
@@ -247,7 +253,10 @@ public class Singleton {
         this.timestamp = 0;
     }
 
-
+    /**
+     * Makes sure that there is only one instance of the singleton when the getInstance is called
+     * @return
+     */
     public static Singleton getInstance() {
         if (uniqueInstance == null)
             uniqueInstance = new Singleton();
