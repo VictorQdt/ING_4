@@ -1,5 +1,6 @@
 package com.example.pingpong;
 
+import android.content.Intent;
 import android.location.Geocoder;
 import android.os.Bundle;
 
@@ -21,6 +22,16 @@ public class EndGameFragment extends Fragment {
     private TextView nameWinner;
     private Button goBackMenu;
 
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Singleton.getInstance().reset();
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), MainActivity.class);
+            getActivity().startActivity(intent);
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,7 +41,9 @@ public class EndGameFragment extends Fragment {
 
         //Initialize fields
         nameWinner = (TextView) view_endOfGame.findViewById(R.id.nameWinner);
+        nameWinner.setText(Singleton.getInstance().getWinnersName());
         goBackMenu = (Button) view_endOfGame.findViewById(R.id.buttonGoBackMenu);
+        goBackMenu.setOnClickListener(onClickListener);
 
         // Inflate the layout for this fragment
         return view_endOfGame;

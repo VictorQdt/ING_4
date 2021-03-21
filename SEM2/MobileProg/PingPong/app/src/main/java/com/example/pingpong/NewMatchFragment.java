@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.Calendar;
+
 public class NewMatchFragment extends Fragment {
 
     private TextView newMatch, player1, player2, nbOfSets, firstServ;
@@ -35,10 +37,11 @@ public class NewMatchFragment extends Fragment {
             Singleton.getInstance().setPlayer2(name2.getText().toString());
             Singleton.getInstance().setSets(sets.isChecked());
             Singleton.getInstance().setFirstService(service.isChecked());
-            Singleton.getInstance().setPointNumber(1);
+            Singleton.getInstance().setPointNumber((short) 1);
             Singleton.getInstance().setStarted(true);
             String p1 = Singleton.getInstance().getPlayer1();
             String p2 = Singleton.getInstance().getPlayer2();
+            Singleton.getInstance().setTimestamp(System.currentTimeMillis()/1000);
 
             /**
              String req = "insert into ppGame (player1, player2) values";

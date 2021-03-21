@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
                     //Create the fragments
                     switch (item.getItemId()) {
                         case nav_home:
-                            Intent i = new Intent(GameActivity.this, HomeFragment.class);
+                            Intent i = new Intent(GameActivity.this, HomeActivity.class);
                             startActivity(i);
                             break;
                         case nav_map:

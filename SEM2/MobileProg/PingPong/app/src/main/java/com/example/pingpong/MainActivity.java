@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(String.valueOf(v.getTag()).equals("newGameTag")){
                 Singleton.getInstance().reset();
-                Intent i = new Intent(MainActivity.this,HomeFragment.class);
+                Intent i = new Intent(MainActivity.this,HomeActivity.class);
                 startActivity(i);
             }else if (String.valueOf(v.getTag()).equals("historyTag")){
                 Intent i = new Intent(MainActivity.this, History.class);

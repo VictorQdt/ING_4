@@ -34,11 +34,23 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String strSql = "create table ppGame ("
-                + " idGame TEXT PRIMARY KEY AUTOINCREMENT,"
+                + "timestamp INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + " player1 TEXT NOT NULL,"
                 + " player2 TEXT NOT NULL,"
-                + " nbOfSets INTEGER NOT NULL,"
-                + " firstServ INTEGER NOT NULL"
+                + " winner TEXT NOT NULL,"
+                + " nbOfSets SHORT NOT NULL,"
+                + " player1points SHORT NOT NULL,"
+                + " player2points SHORT NOT NULL,"
+                + " player1WonSets SHORT NOT NULL,"
+                + " player2WonSets SHORT NOT NULL,"
+                + " player1WinningShots SHORT NOT NULL,"
+                + " player2WinningShots SHORT NOT NULL,"
+                + " player1Aces SHORT NOT NULL,"
+                + " player2Aces SHORT NOT NULL,"
+                + " player1DirectFaults SHORT NOT NULL,"
+                + " player2DirectFaults SHORT NOT NULL,"
+                + " player1WinningReturns SHORT NOT NULL,"
+                + " player2WinningReturns SHORT NOT NULL"
                 + ")";
         sqLiteDatabase.execSQL( strSql );
         Log.i("DATABASE", "onCreate invoked");
@@ -59,11 +71,15 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Log.i("DATABASE", "onCreate invoked");
     }
 
-    public void createGame(Integer idGame, String player1, String player2, Integer nbOfSets, Integer firstServ ) {
+    public void createGame(Long timestamp, String player1, String player2, String winner,Short  nbOfSets, Short player1points, Short player2points,
+                    Short player1WonSets, Short player2WonSets, Short player1WinningShots, Short player2WinningShots, Short player1Aces,
+                           Short player2Aces, Short player1DirectFaults, Short player2DirectFaults, Short player1WinningReturns, Short player2WinningReturns) {
         player1 = player1.replace("'", "''");
         player2= player2.replace("'", "''");
-        String strSQL = "insert into ppGame (idGame, player1, player2, nbOfSets, firstServ) values ( '"
-                + idGame + ", " + player1 + "','" + player2 + "', " + nbOfSets + "," + firstServ + ")";
+        String strSQL = "insert into ppGame (timestamp, player1, player2, winner, nbOfSets, player1points, player2points, player1WonSets, player2WonSets,player1WinningShots, player2WinningShots, player1Aces, player2Aces, player1DirectFaults, player2DirectFaults, player1WinningReturns, player2WinningReturns ) values ( "
+                + timestamp + ", '" + player1 + "','" + player2 + "', '" + winner + "', " + nbOfSets + "," + player1points + "," + player2points + "," + player1WonSets + "," + player2WonSets
+                + "," + player1WinningShots + "," + player2WinningShots + "," + player1Aces + "," + player2Aces + "," + player1DirectFaults + "," + player2DirectFaults + "," + player1WinningReturns
+                + "," + player2WinningReturns+ ")";
         this.getWritableDatabase().execSQL( strSQL );
         Log.i("DATABASE", "startGame invoked");
     }
