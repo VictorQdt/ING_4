@@ -74,4 +74,5 @@
     <string name="pct_direct_faults">% Direct Faults</string>
     <string name="pct_aces">% Aces</string>
     <string name="TOTAL_win_points">TOTAL WIN POINTS</string>
+    <string name="pct_winning_returns">% Winning Returns</string>
 </resources>

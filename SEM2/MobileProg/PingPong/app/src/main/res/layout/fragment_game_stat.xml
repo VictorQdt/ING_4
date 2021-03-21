@@ -114,6 +114,26 @@
         <TableRow>
 
             <TextView
+                android:padding="3dip"
+                android:text="@string/pct_winning_returns"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pct_winning_returnsP1"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/pct_winning_returnsP2"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
                 android:id="@+id/pct_direct_faults"
                 android:gravity="left"
                 android:padding="3dip"
