@@ -24,12 +24,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Fragment for taking pictures
+ */
 public class PhotoFragment extends Fragment {
 
-    //constante
+    //identifies the return result when the result arrives
     private static final int RETOUR_PRENDRE_PHOTO = 1;
 
-    //propriétés
+    //properties
     private Button btnTakePhoto;
     private ImageView imgDisplayPhoto;
     private Button btnSave;
@@ -47,15 +50,15 @@ public class PhotoFragment extends Fragment {
         imgDisplayPhoto = (ImageView) picture_view.findViewById(R.id.imgDisplayPhoto);
         btnSave = (Button) picture_view.findViewById(R.id.btnSave);
 
-        //méthode pour gérer les évènements
+        //méthodes pour gérer les events
         createOnClickBtnTakePhoto();
         createOnClickBtnSave();
 
         return picture_view;
     }
 
-    /*
-     * évènement clic sur boutton btnTakePhoto
+    /**
+     * event clic button btnTakePhoto
      * */
     private void createOnClickBtnTakePhoto(){
         btnTakePhoto.setOnClickListener(new Button.OnClickListener() {
@@ -67,41 +70,37 @@ public class PhotoFragment extends Fragment {
     }
 
     /**
-     * évènement click sur Save
-     */
-    private void createOnClickBtnSave() {
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // enrengistrer la photo
-                MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), img, "mon img", "img");
-            }
-        });
-    }
-
-    /**
      * Accès à l'appareil photo et mémorise dans un fichier temporaire (avec le provider)
      */
     private void takePhoto(){
-        //creer un intent pour ouvrir une fenetre pour prendre une photo
+        //creer/preparer un intent pour ouvrir une fenetre pour prendre une photo (par la classe MediaStore)
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //test pour controler que l'intent peut etre géré par le telephone
-        if(intent.resolveActivity(getActivity().getPackageManager()) != null){
-            //creer un nom de fichier unique qui récupère sous forme de string la date actuelle
+
+        //test pour controler que l'intent peut etre géré par le telephone (il peut prendre des photos)
+        if(intent.resolveActivity(getActivity().getPackageManager()) != null) {
+
+            //creer un nom de fichier unique : récupère sous forme de string la date actuelle
             String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            //chemin du directory où sont stockés les photos
+
+            //chemin du directory où sont stockés les photos (chemin externe dans la gallery)
             File photoDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             try {
+
+                //creer un fichier temporaire avec nom + lieu stockage
                 File photoFile = File.createTempFile("photo"+time, ".jpg", photoDir);
+
                 //Enrengistrer le chemin complet
                 photoPath = photoFile.getAbsolutePath();
+
                 // créer l'URI pour accéder au fichier (Context, provider, fichier)
                 Uri photoUri = FileProvider.getUriForFile(
                         getActivity(),
                         PhotoFragment.this.getActivity().getApplicationContext().getPackageName() + ".provider",
                         photoFile);
+
                 // transfert uri vers l'intent pour enrengistrement photo dans fichier temporaire
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+
                 //ouvrir l'activity par rapport à l'intent
                 startActivityForResult(intent, RETOUR_PRENDRE_PHOTO);
             } catch (IOException e){
@@ -119,6 +118,7 @@ public class PhotoFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         // vérifier le bon code de retour (requestCode) et l'état du retour (resultCode)
         if(requestCode == RETOUR_PRENDRE_PHOTO && resultCode == Activity.RESULT_OK){
             //récupérer l'image
@@ -126,5 +126,18 @@ public class PhotoFragment extends Fragment {
             //afficher l'image
             imgDisplayPhoto.setImageBitmap(img);
         }
+    }
+
+    /**
+     * event click sur Save
+     */
+    private void createOnClickBtnSave() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // enrengistrer la photo
+                MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), img, "mon img", "img");
+            }
+        });
     }
 }

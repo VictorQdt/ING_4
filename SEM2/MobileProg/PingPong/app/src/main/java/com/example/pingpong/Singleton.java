@@ -1,5 +1,8 @@
 package com.example.pingpong;
 
+/**
+ *
+ */
 public class Singleton {
     private static Singleton uniqueInstance;
 

@@ -59,11 +59,11 @@
     <string name="hint_game_1">Game 1</string>
 
     <!-- STATS FRAG -->
-    <string name="title_stats">STATS of : </string>
+    <string name="title_stats">STATISTICS</string>
     <string name="game_id_stats">Game_ID</string>
     <string name="stats_Nameplayer1">Name1</string>
     <string name="stats_Nameplayer2">Name2</string>
-    <string name="stats_Winner">The winner is :</string>
+    <string name="stats_Winner">Winner of the game :</string>
     <string name="stats_WinnerName">Winner_Name</string>
     <string name="stats_table">STATS</string>
     <string name="nb_winning_shots">NB Winning Shots</string>
@@ -74,4 +74,5 @@
     <string name="pct_direct_faults">% Direct Faults</string>
     <string name="pct_aces">% Aces</string>
     <string name="TOTAL_win_points">TOTAL WIN POINTS</string>
+    <string name="pct_winning_returns">% Winning Returns</string>
 </resources>

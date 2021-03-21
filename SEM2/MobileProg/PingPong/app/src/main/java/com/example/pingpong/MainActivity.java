@@ -7,14 +7,19 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The Main Activity contains 2 buttons :
+ * - Create & Play a New Game
+ * - Go to History of Games
+ */
 public class MainActivity extends AppCompatActivity {
 
-    public String  namePlayer1;
-
+    /**
+     * Listener for the choice of the button
+     */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             if(String.valueOf(v.getTag()).equals("newGameTag")){
                 Singleton.getInstance().reset();
                 Intent i = new Intent(MainActivity.this,HomeActivity.class);
@@ -26,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Creation of the layout
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

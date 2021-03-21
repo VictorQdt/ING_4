@@ -15,13 +15,17 @@ import android.widget.TextView;
 import java.util.Locale;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment only displayed when the game is over
  */
 public class EndGameFragment extends Fragment {
 
+    //properties
     private TextView nameWinner;
     private Button goBackMenu;
 
+    /**
+     * Listener of the button GobackMenu (all data is reset for starting a new game)
+     */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -32,6 +36,13 @@ public class EndGameFragment extends Fragment {
         }
     };
 
+    /**
+     * View of the fragment (set the winner's name though the Singleton)
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

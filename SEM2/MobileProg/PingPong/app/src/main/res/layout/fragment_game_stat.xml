@@ -17,55 +17,41 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp" />
-
-    <TextView
-        android:id="@+id/gameID"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="@string/game_id_stats"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/title_stats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/stats_WinnerName"
-        android:layout_width="180dp"
-        android:layout_height="26dp"
+        android:layout_width="105dp"
+        android:layout_height="29dp"
         android:layout_marginTop="32dp"
         android:gravity="left"
         android:text="@string/stats_WinnerName"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.26"
         app:layout_constraintStart_toEndOf="@+id/stats_Winner"
-        app:layout_constraintTop_toBottomOf="@+id/gameID"
+        app:layout_constraintTop_toBottomOf="@+id/title_stats"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/stats_Winner"
-        android:layout_width="163dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="150dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="64dp"
         android:gravity="left"
         android:text="@string/stats_Winner"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_stats"
-        app:layout_constraintVertical_bias="0.333"
+        app:layout_constraintVertical_bias="0.31"
         tools:ignore="MissingConstraints" />
 
     <TableLayout
@@ -120,6 +106,26 @@
 
             <TextView
                 android:id="@+id/pct_winning_shotsP2"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="@string/pct_winning_returns"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pct_winning_returnsP1"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/pct_winning_returnsP2"
                 android:gravity="left"
                 android:padding="3dip"
                 android:text="" />
