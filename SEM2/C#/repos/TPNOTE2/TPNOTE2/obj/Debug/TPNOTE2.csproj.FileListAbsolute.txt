@@ -9,4 +9,19 @@ C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.c
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.csproj.CoreCompileInputs.cache
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.exe
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.pdb
+<<<<<<< HEAD
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.Menu.resources
+=======
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\bin\Debug\DatabaseTP2.mdf
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\bin\Debug\DatabaseTP2_log.ldf
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\bin\Debug\TPNOTE2.exe.config
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\bin\Debug\TPNOTE2.exe
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\bin\Debug\TPNOTE2.pdb
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.csprojAssemblyReference.cache
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.Form1.resources
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.Properties.Resources.resources
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.csproj.GenerateResource.cache
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.csproj.CoreCompileInputs.cache
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.exe
+C:\Users\victo\Documents\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.pdb
+>>>>>>> b7832d9b8b2c94045de82ca589c01b65f81d4ed8
