@@ -117,7 +117,7 @@ public class MapFragment extends Fragment {
     }
 
     /**
-     * Get the current locationof the android device
+     * Get the current location of the android device
      */
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {

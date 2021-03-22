@@ -78,7 +78,6 @@ public class NewPoint extends Fragment {
                 Singleton.getInstance().setPlayer2ActualSet(0);
                 Singleton.getInstance().setPlayer1ActualSet(0);
                 Singleton.getInstance().setPointNumber((short) 1);
-                System.out.println("won sets player 1 " + Singleton.getInstance().getPlayer1WonSets());
 
 
             } else if (Singleton.getInstance().getPlayer2ActualSet() == 11 && Singleton.getInstance().getPlayer1ActualSet() <= 9){
