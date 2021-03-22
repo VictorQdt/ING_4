@@ -1,0 +1,12 @@
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\bin\Debug\Emissions.mdf
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\bin\Debug\Emissions_log.ldf
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\bin\Debug\DataBaseEmission.exe.config
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\bin\Debug\DataBaseEmission.exe
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\bin\Debug\DataBaseEmission.pdb
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.csprojAssemblyReference.cache
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.Form1.resources
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.Properties.Resources.resources
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.csproj.GenerateResource.cache
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.exe
+C:\Users\USER PC\source\repos\TP7\DataBaseEmission\DataBaseEmission\obj\Debug\DataBaseEmission.pdb

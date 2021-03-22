@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[CIN] INT NOT NULL PRIMARY KEY, 
+    [NOM] NCHAR(10) NULL, 
+    [PRENOM] NCHAR(10) NULL, 
+    [VILLE] NCHAR(20) NULL, 
+    [TEL] INT NULL
+)

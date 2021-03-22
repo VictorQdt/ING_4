@@ -1,0 +1,6 @@
+C:\Users\USER PC\source\repos\MyFirstApp\MyFirstApp\bin\Release\MyFirstApp.exe.config
+C:\Users\USER PC\source\repos\MyFirstApp\MyFirstApp\bin\Release\MyFirstApp.exe
+C:\Users\USER PC\source\repos\MyFirstApp\MyFirstApp\bin\Release\MyFirstApp.pdb
+C:\Users\USER PC\source\repos\MyFirstApp\MyFirstApp\obj\Release\MyFirstApp.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\MyFirstApp\MyFirstApp\obj\Release\MyFirstApp.exe
+C:\Users\USER PC\source\repos\MyFirstApp\MyFirstApp\obj\Release\MyFirstApp.pdb

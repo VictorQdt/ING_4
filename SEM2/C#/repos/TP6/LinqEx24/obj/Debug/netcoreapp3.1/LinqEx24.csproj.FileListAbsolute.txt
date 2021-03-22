@@ -1,0 +1,12 @@
+C:\Users\USER PC\source\repos\TP6\LinqEx24\bin\Debug\netcoreapp3.1\LinqEx24.exe
+C:\Users\USER PC\source\repos\TP6\LinqEx24\bin\Debug\netcoreapp3.1\LinqEx24.deps.json
+C:\Users\USER PC\source\repos\TP6\LinqEx24\bin\Debug\netcoreapp3.1\LinqEx24.runtimeconfig.json
+C:\Users\USER PC\source\repos\TP6\LinqEx24\bin\Debug\netcoreapp3.1\LinqEx24.runtimeconfig.dev.json
+C:\Users\USER PC\source\repos\TP6\LinqEx24\bin\Debug\netcoreapp3.1\LinqEx24.dll
+C:\Users\USER PC\source\repos\TP6\LinqEx24\bin\Debug\netcoreapp3.1\LinqEx24.pdb
+C:\Users\USER PC\source\repos\TP6\LinqEx24\obj\Debug\netcoreapp3.1\LinqEx24.AssemblyInfoInputs.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx24\obj\Debug\netcoreapp3.1\LinqEx24.AssemblyInfo.cs
+C:\Users\USER PC\source\repos\TP6\LinqEx24\obj\Debug\netcoreapp3.1\LinqEx24.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx24\obj\Debug\netcoreapp3.1\LinqEx24.dll
+C:\Users\USER PC\source\repos\TP6\LinqEx24\obj\Debug\netcoreapp3.1\LinqEx24.pdb
+C:\Users\USER PC\source\repos\TP6\LinqEx24\obj\Debug\netcoreapp3.1\LinqEx24.genruntimeconfig.cache
