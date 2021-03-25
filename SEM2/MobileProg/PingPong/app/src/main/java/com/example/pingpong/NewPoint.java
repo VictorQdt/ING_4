@@ -78,6 +78,10 @@ public class NewPoint extends Fragment {
                 Singleton.getInstance().setPlayer2ActualSet(0);
                 Singleton.getInstance().setPlayer1ActualSet(0);
                 Singleton.getInstance().setPointNumber((short) 1);
+<<<<<<< HEAD
+                //System.out.println("won sets player 1 " + Singleton.getInstance().getPlayer1WonSets());
+=======
+>>>>>>> 39df2cbacc83a66e21b622695b3d1211069f3b1f
 
 
             } else if (Singleton.getInstance().getPlayer2ActualSet() == 11 && Singleton.getInstance().getPlayer1ActualSet() <= 9){
@@ -85,10 +89,12 @@ public class NewPoint extends Fragment {
                 Singleton.getInstance().setPlayer2WonSets((short) (Singleton.getInstance().getPlayer2WonSets() + 1));
                 Singleton.getInstance().setPlayer2ActualSet(0);
                 Singleton.getInstance().setPlayer1ActualSet(0);
+                // redémarrer les services
                 Singleton.getInstance().setPointNumber((short) 1);
 
             }
 
+            // égalité
             if(Singleton.getInstance().getPlayer1ActualSet() >= 10 && Singleton.getInstance().getPlayer2ActualSet() >= 10){
                 if (Singleton.getInstance().getPlayer1ActualSet() == Singleton.getInstance().getPlayer2ActualSet() + 2){
                     Singleton.getInstance().setPlayer1WonSets((short) (Singleton.getInstance().getPlayer1WonSets() + 1));
@@ -107,6 +113,7 @@ public class NewPoint extends Fragment {
             /**
              * If it is the end of the game, sets the winners name and calls victory
              */
+            // Ici on truque le jeu avec 1 set pour gagner pour le player 1
             if(Singleton.getInstance().isSets() && Singleton.getInstance().getPlayer1WonSets() == 1){
                 Singleton.getInstance().setWinnersName(Singleton.getInstance().getPlayer1());
                 victory();
@@ -181,7 +188,7 @@ public class NewPoint extends Fragment {
         player1.setText(Singleton.getInstance().getPlayer1());
         player2.setText(Singleton.getInstance().getPlayer2());
         // Inflate the layout for this fragment
-        if((Singleton.getInstance().getPlayer1ActualSet() + Singleton.getInstance().getPlayer2ActualSet()) < 21){
+        if((Singleton.getInstance().getPlayer1ActualSet() + Singleton.getInstance().getPlayer2ActualSet()) < 21){ // somme < 21 donc 2 services chacun (pas d'égalité)
             if(Singleton.getInstance().isFirstService()){
                 if(actualPoint == 1 || actualPoint == 2) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
                 else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
@@ -190,7 +197,7 @@ public class NewPoint extends Fragment {
                 if(actualPoint == 1 || actualPoint == 2) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());
                 else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
             }
-        }else {
+        }else { // 1 service chacun
             if(Singleton.getInstance().isFirstService()){
                 if(actualPoint%2 == 0) actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer1());
                 else actualPlayer.setText("Service : " + Singleton.getInstance().getPlayer2());

@@ -68,7 +68,11 @@ namespace TPNOTE2
             this.toolStripButton_Quitter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
+<<<<<<< HEAD
             this.toolStrip1.Size = new System.Drawing.Size(1067, 27);
+=======
+            this.toolStrip1.Size = new System.Drawing.Size(905, 25);
+>>>>>>> c766acf11f6fdfc97ead3b983c2bbd1e28a171f1
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -105,7 +109,11 @@ namespace TPNOTE2
             this.toolStripButton_Consultation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton_Consultation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Consultation.Name = "toolStripButton_Consultation";
+<<<<<<< HEAD
             this.toolStripButton_Consultation.Size = new System.Drawing.Size(96, 24);
+=======
+            this.toolStripButton_Consultation.Size = new System.Drawing.Size(79, 22);
+>>>>>>> c766acf11f6fdfc97ead3b983c2bbd1e28a171f1
             this.toolStripButton_Consultation.Text = "Consultation";
             this.toolStripButton_Consultation.ToolTipText = "toolStripButton_Consultation";
             this.toolStripButton_Consultation.Click += new System.EventHandler(this.toolStripButton_Consultation_Click);
@@ -116,7 +124,11 @@ namespace TPNOTE2
             this.toolStripButton_Quitter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_Quitter.Image")));
             this.toolStripButton_Quitter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Quitter.Name = "toolStripButton_Quitter";
+<<<<<<< HEAD
             this.toolStripButton_Quitter.Size = new System.Drawing.Size(59, 24);
+=======
+            this.toolStripButton_Quitter.Size = new System.Drawing.Size(48, 22);
+>>>>>>> c766acf11f6fdfc97ead3b983c2bbd1e28a171f1
             this.toolStripButton_Quitter.Text = "Quitter";
             this.toolStripButton_Quitter.Click += new System.EventHandler(this.toolStripButton_Quitter_Click);
             // 
@@ -124,7 +136,11 @@ namespace TPNOTE2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1067, 554);
+=======
+            this.ClientSize = new System.Drawing.Size(905, 536);
+>>>>>>> c766acf11f6fdfc97ead3b983c2bbd1e28a171f1
             this.Controls.Add(this.toolStrip1);
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
