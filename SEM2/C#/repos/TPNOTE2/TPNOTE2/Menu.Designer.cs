@@ -35,11 +35,11 @@ namespace TPNOTE2
             this.databaseTP2DataSet = new TPNOTE2.DatabaseTP2DataSet();
             this.tableTableAdapter = new TPNOTE2.DatabaseTP2DataSetTableAdapters.TableTableAdapter();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton_Consultation = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton_Gestion = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripButton_Quitter = new System.Windows.Forms.ToolStripButton();
             this.gestionDesEtudiantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton_Consultation = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_Quitter = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTP2DataSet)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -61,25 +61,16 @@ namespace TPNOTE2
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton_Gestion,
             this.toolStripButton_Consultation,
             this.toolStripButton_Quitter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1067, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton_Consultation
-            // 
-            this.toolStripButton_Consultation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton_Consultation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_Consultation.Name = "toolStripButton_Consultation";
-            this.toolStripButton_Consultation.Size = new System.Drawing.Size(79, 22);
-            this.toolStripButton_Consultation.Text = "Consultation";
-            this.toolStripButton_Consultation.ToolTipText = "toolStripButton_Consultation";
-            this.toolStripButton_Consultation.Click += new System.EventHandler(this.toolStripButton_Consultation_Click);
             // 
             // toolStripDropDownButton_Gestion
             // 
@@ -90,10 +81,34 @@ namespace TPNOTE2
             this.toolStripDropDownButton_Gestion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton_Gestion.Image")));
             this.toolStripDropDownButton_Gestion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton_Gestion.Name = "toolStripDropDownButton_Gestion";
-            this.toolStripDropDownButton_Gestion.Size = new System.Drawing.Size(60, 22);
+            this.toolStripDropDownButton_Gestion.Size = new System.Drawing.Size(73, 24);
             this.toolStripDropDownButton_Gestion.Text = "Gestion";
             this.toolStripDropDownButton_Gestion.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.toolStripDropDownButton_Gestion.ToolTipText = "toolStripDropDownButton_Gestion";
+            // 
+            // gestionDesEtudiantsToolStripMenuItem
+            // 
+            this.gestionDesEtudiantsToolStripMenuItem.Name = "gestionDesEtudiantsToolStripMenuItem";
+            this.gestionDesEtudiantsToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.gestionDesEtudiantsToolStripMenuItem.Text = "Gestion des etudiants";
+            this.gestionDesEtudiantsToolStripMenuItem.Click += new System.EventHandler(this.gestionDesEtudiantsToolStripMenuItem_Click);
+            // 
+            // gestionDesNotesToolStripMenuItem
+            // 
+            this.gestionDesNotesToolStripMenuItem.Name = "gestionDesNotesToolStripMenuItem";
+            this.gestionDesNotesToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.gestionDesNotesToolStripMenuItem.Text = "Gestion des notes";
+            this.gestionDesNotesToolStripMenuItem.Click += new System.EventHandler(this.gestionDesNotesToolStripMenuItem_Click);
+            // 
+            // toolStripButton_Consultation
+            // 
+            this.toolStripButton_Consultation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton_Consultation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_Consultation.Name = "toolStripButton_Consultation";
+            this.toolStripButton_Consultation.Size = new System.Drawing.Size(96, 24);
+            this.toolStripButton_Consultation.Text = "Consultation";
+            this.toolStripButton_Consultation.ToolTipText = "toolStripButton_Consultation";
+            this.toolStripButton_Consultation.Click += new System.EventHandler(this.toolStripButton_Consultation_Click);
             // 
             // toolStripButton_Quitter
             // 
@@ -101,31 +116,18 @@ namespace TPNOTE2
             this.toolStripButton_Quitter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_Quitter.Image")));
             this.toolStripButton_Quitter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Quitter.Name = "toolStripButton_Quitter";
-            this.toolStripButton_Quitter.Size = new System.Drawing.Size(48, 22);
+            this.toolStripButton_Quitter.Size = new System.Drawing.Size(59, 24);
             this.toolStripButton_Quitter.Text = "Quitter";
             this.toolStripButton_Quitter.Click += new System.EventHandler(this.toolStripButton_Quitter_Click);
             // 
-            // gestionDesEtudiantsToolStripMenuItem
-            // 
-            this.gestionDesEtudiantsToolStripMenuItem.Name = "gestionDesEtudiantsToolStripMenuItem";
-            this.gestionDesEtudiantsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.gestionDesEtudiantsToolStripMenuItem.Text = "Gestion des etudiants";
-            this.gestionDesEtudiantsToolStripMenuItem.Click += new System.EventHandler(this.gestionDesEtudiantsToolStripMenuItem_Click);
-            // 
-            // gestionDesNotesToolStripMenuItem
-            // 
-            this.gestionDesNotesToolStripMenuItem.Name = "gestionDesNotesToolStripMenuItem";
-            this.gestionDesNotesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.gestionDesNotesToolStripMenuItem.Text = "Gestion des notes";
-            this.gestionDesNotesToolStripMenuItem.Click += new System.EventHandler(this.gestionDesNotesToolStripMenuItem_Click);
-            // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.toolStrip1);
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Menu";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
