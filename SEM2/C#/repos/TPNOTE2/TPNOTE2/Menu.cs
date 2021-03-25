@@ -35,10 +35,11 @@ namespace TPNOTE2
             Gestion_Etudiants gestionEtudiantsForm = new Gestion_Etudiants();
 
             // Set the Parent Form of the "Gestion Etudiant" window.
-            //gestionEtudiantsForm.MdiParent = this;
+            gestionEtudiantsForm.MdiParent = this;
 
             //Hide current Form
-            this.Hide();
+            //this.Hide();
+
             // Display the Form
             gestionEtudiantsForm.Show();
         }
@@ -54,13 +55,13 @@ namespace TPNOTE2
             Gestion_Notes gestionNotesForm = new Gestion_Notes();
 
             // Set the Parent Form of the "Gestion des Notes" window.
-            //gestionNotesForm.MdiParent = this;
+            gestionNotesForm.MdiParent = this;
 
             //Hide current Form
-            this.Hide();
+            //this.Hide();
+
             // Display the Form
             gestionNotesForm.Show();
-            this.Hide();
         }
 
         /// <summary>
@@ -74,9 +75,11 @@ namespace TPNOTE2
             Consultation consultationForm = new Consultation();
 
             // Set the Parent Form of the "Gestion des Notes" window.
-            //consultationForm.MdiParent = this;
+            consultationForm.MdiParent = this;
 
-            this.Hide();
+            //Hide current Form
+            //this.Hide();
+
             // Display the Form
             consultationForm.Show();
         }
