@@ -1,0 +1,13 @@
+C:\Users\USER PC\source\repos\TP6\LinqEx23\bin\Debug\netcoreapp3.1\LinqEx23.exe
+C:\Users\USER PC\source\repos\TP6\LinqEx23\bin\Debug\netcoreapp3.1\LinqEx23.deps.json
+C:\Users\USER PC\source\repos\TP6\LinqEx23\bin\Debug\netcoreapp3.1\LinqEx23.runtimeconfig.json
+C:\Users\USER PC\source\repos\TP6\LinqEx23\bin\Debug\netcoreapp3.1\LinqEx23.runtimeconfig.dev.json
+C:\Users\USER PC\source\repos\TP6\LinqEx23\bin\Debug\netcoreapp3.1\LinqEx23.dll
+C:\Users\USER PC\source\repos\TP6\LinqEx23\bin\Debug\netcoreapp3.1\LinqEx23.pdb
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.csprojAssemblyReference.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.AssemblyInfoInputs.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.AssemblyInfo.cs
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.dll
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.pdb
+C:\Users\USER PC\source\repos\TP6\LinqEx23\obj\Debug\netcoreapp3.1\LinqEx23.genruntimeconfig.cache

@@ -1,0 +1,22 @@
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\bin\Debug\Example.exe.config
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\bin\Debug\Example.exe
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\bin\Debug\Example.pdb
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.csprojAssemblyReference.cache
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.Form1.resources
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.Properties.Resources.resources
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.csproj.GenerateResource.cache
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.csproj.CoreCompileInputs.cache
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.exe
+C:\Pédagogique\C sharp\ECE Séance\C# and Math\Seance 7 ADO\Example\Example\obj\Debug\Example.pdb
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\bin\Debug\test1.mdf
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\bin\Debug\test1_log.ldf
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\bin\Debug\Example.exe.config
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\bin\Debug\Example.exe
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\bin\Debug\Example.pdb
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.csprojAssemblyReference.cache
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.Form1.resources
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.Properties.Resources.resources
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.csproj.GenerateResource.cache
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.exe
+C:\Users\USER PC\source\repos\TP7\Example\Example\Example\obj\Debug\Example.pdb

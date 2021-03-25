@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPNOTE2", "TPNOTE2\TPNOTE2.csproj", "{D59A15CE-D438-49E5-8BA1-CEDB9B099BBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D59A15CE-D438-49E5-8BA1-CEDB9B099BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59A15CE-D438-49E5-8BA1-CEDB9B099BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59A15CE-D438-49E5-8BA1-CEDB9B099BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59A15CE-D438-49E5-8BA1-CEDB9B099BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {126141C2-3606-4EF5-815F-5D449EFEE910}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+C:\Users\USER PC\source\repos\TP6\LinqEx7\bin\Debug\netcoreapp3.1\LinqEx7.exe
+C:\Users\USER PC\source\repos\TP6\LinqEx7\bin\Debug\netcoreapp3.1\LinqEx7.deps.json
+C:\Users\USER PC\source\repos\TP6\LinqEx7\bin\Debug\netcoreapp3.1\LinqEx7.runtimeconfig.json
+C:\Users\USER PC\source\repos\TP6\LinqEx7\bin\Debug\netcoreapp3.1\LinqEx7.runtimeconfig.dev.json
+C:\Users\USER PC\source\repos\TP6\LinqEx7\bin\Debug\netcoreapp3.1\LinqEx7.dll
+C:\Users\USER PC\source\repos\TP6\LinqEx7\bin\Debug\netcoreapp3.1\LinqEx7.pdb
+C:\Users\USER PC\source\repos\TP6\LinqEx7\obj\Debug\netcoreapp3.1\LinqEx7.AssemblyInfoInputs.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx7\obj\Debug\netcoreapp3.1\LinqEx7.AssemblyInfo.cs
+C:\Users\USER PC\source\repos\TP6\LinqEx7\obj\Debug\netcoreapp3.1\LinqEx7.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\TP6\LinqEx7\obj\Debug\netcoreapp3.1\LinqEx7.dll
+C:\Users\USER PC\source\repos\TP6\LinqEx7\obj\Debug\netcoreapp3.1\LinqEx7.pdb
+C:\Users\USER PC\source\repos\TP6\LinqEx7\obj\Debug\netcoreapp3.1\LinqEx7.genruntimeconfig.cache

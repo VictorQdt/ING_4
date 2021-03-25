@@ -1,0 +1,12 @@
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\bin\Debug\Database.mdf
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\bin\Debug\Database_log.ldf
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\bin\Debug\DataBase.exe
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\bin\Debug\DataBase.pdb
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.csprojAssemblyReference.cache
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.Form1.resources
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.Properties.Resources.resources
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.csproj.GenerateResource.cache
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.csproj.CoreCompileInputs.cache
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.exe
+C:\Users\USER PC\source\repos\TP7\DataBase\DataBase\obj\Debug\DataBase.pdb

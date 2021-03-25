@@ -142,7 +142,7 @@ public class PhotoFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // enrengistrer la photo
+                // enrengistrer la photo : (Class Mediastore = contract between the media provider and applications)
                 MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), img, "mon img", "img");
             }
         });
