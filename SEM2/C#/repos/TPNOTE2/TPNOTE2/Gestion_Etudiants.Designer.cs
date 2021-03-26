@@ -281,6 +281,7 @@ namespace TPNOTE2
             this.Name = "Gestion_Etudiants";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Gestion_Etudiants";
+            this.Load += new System.EventHandler(this.Gestion_Etudiants_Load);
             this.groupInfos.ResumeLayout(false);
             this.groupInfos.PerformLayout();
             this.groupBox1.ResumeLayout(false);

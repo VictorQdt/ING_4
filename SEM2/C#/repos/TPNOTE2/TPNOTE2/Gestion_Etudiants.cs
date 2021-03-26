@@ -37,7 +37,10 @@ namespace TPNOTE2
         {
 
         }
-
+        /// <summary>
+        /// Checks if any field is empty and 
+        /// </summary>
+        /// <returns> a boolean that say if a field is empty</returns>
         private Boolean isEmpty()
         {
             if (textBoxNum_Etu.Text == "" || textBoxNom.Text == "" || textBoxPrenom.Text == "")
@@ -47,7 +50,11 @@ namespace TPNOTE2
             }
             else return false;
         }
-
+        /// <summary>
+        /// empties all the fields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNouveau_Click(object sender, System.EventArgs e)
         {
             textBoxNum_Etu.Text = "";
@@ -55,14 +62,23 @@ namespace TPNOTE2
             textBoxPrenom.Text = "";
             naissance.Value = System.DateTime.Today;
         }
-
+        /// <summary>
+        /// Calls the function recherche given the id put in the text box num etu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRecherche_Click(object sender, System.EventArgs e)
         {
 
             recherche(int.Parse(textBoxNum_Etu.Text), sender, e);
             
         }
-
+        /// <summary>
+        /// Research the informations about a student given its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void recherche(int id, Object sender, System.EventArgs e)
         {
             connection.Open();
@@ -93,7 +109,11 @@ namespace TPNOTE2
                 connection.Close();
             }
         }
-
+        /// <summary>
+        /// Makes sure that only numbers are put in this field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxNum_Etu_TextChanged(object sender, EventArgs e)
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(textBoxNum_Etu.Text, "[^0-9]"))
@@ -112,7 +132,11 @@ namespace TPNOTE2
         {
 
         }
-
+        /// <summary>
+        /// Adds to the database a new student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             if (isEmpty())
@@ -148,7 +172,11 @@ namespace TPNOTE2
                 
             }
         }
-
+        /// <summary>
+        /// Modifies a student informations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonModifier_Click(object sender, EventArgs e)
         {
             if (isEmpty())
@@ -193,7 +221,11 @@ namespace TPNOTE2
 
             }
         }
-
+        /// <summary>
+        /// Deletes a student from the database with the id put in student num
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSupprimer_Click(object sender, EventArgs e)
         {
 
@@ -219,12 +251,20 @@ namespace TPNOTE2
             }
 
         }
-
+        /// <summary>
+        /// Quits this window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Display the informations of the first student of the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDebut_Click(object sender, EventArgs e)
         {
             int id = 0;
@@ -241,7 +281,11 @@ namespace TPNOTE2
                 connection.Close();
             recherche(id, sender, e);
         }
-
+        /// <summary>
+        /// Display the information of the previous student in the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonMoins_Click(object sender, EventArgs e)
         {
             int min = -1;
@@ -288,7 +332,11 @@ namespace TPNOTE2
             }
             
         }
-
+        /// <summary>
+        /// Display the informations of the next student of the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonPlus_Click(object sender, EventArgs e)
         {
 
@@ -336,7 +384,11 @@ namespace TPNOTE2
             }
 
         }
-
+        /// <summary>
+        /// Display the informations of the last student of the databases
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
             int id = 0;
@@ -352,6 +404,11 @@ namespace TPNOTE2
             }
             connection.Close();
             recherche(id, sender, e);
+
+        }
+
+        private void Gestion_Etudiants_Load(object sender, EventArgs e)
+        {
 
         }
     }
