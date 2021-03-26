@@ -67,7 +67,7 @@ namespace TPNOTE2
             this.toolStripButton_Quitter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(905, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(863, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -123,7 +123,7 @@ namespace TPNOTE2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 536);
+            this.ClientSize = new System.Drawing.Size(863, 624);
             this.Controls.Add(this.toolStrip1);
             this.IsMdiContainer = true;
             this.Name = "Menu";

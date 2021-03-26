@@ -12,3 +12,4 @@ C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.e
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.pdb
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.Gestion_Etudiants.resources
 C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.Gestion_Notes.resources
+C:\Users\USER PC\Desktop\ING_4\SEM2\C#\repos\TPNOTE2\TPNOTE2\obj\Debug\TPNOTE2.Consultation.resources
