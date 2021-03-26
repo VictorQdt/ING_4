@@ -92,6 +92,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Consultation.resx">
+      <DependentUpon>Consultation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gestion_Etudiants.resx">
       <DependentUpon>Gestion_Etudiants.cs</DependentUpon>
     </EmbeddedResource>

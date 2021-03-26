@@ -5,7 +5,7 @@ namespace TPNOTE2
 {
     public partial class Menu : Form
     {
-        //SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DatabaseTP2.mdf;Integrated Security=True");
+        
 
         public Menu()
         {
@@ -84,6 +84,11 @@ namespace TPNOTE2
         private void toolStripButton_Quitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
