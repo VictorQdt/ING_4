@@ -23,7 +23,9 @@
         android:supportsRtl="true"
         android:configChanges="locale|orientation"
         android:theme="@style/Theme.PingPong">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity android:name=".History" />
 
         <!--
