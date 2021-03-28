@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="francais">Français</string>
+    <string name="english">English</string>
+    <string name="app_name">PingPong</string>
+
+    <!--MAIN ACTIVITY-->
+    <string name="tile_welcome">Bienvenue !</string>
+    <string name="btn_newGame">Nouvelle Partie</string>
+    <string name="btn_history">Historique</string>
+
+    <!--BOTTOM NAV-->
+    <string name="bottom_nav_home">Menu</string>
+    <string name="bottom_nav_map">Map</string>
+    <string name="bottom_nav_photo">Photo</string>
+
+    <!--FRAGMENT PHOTO-->
+    <string name="takePhoto">Prendre une photo</string>
+    <string name="save">Sauvegarder</string>
+
+    <!--FRAGMENT NEW MATCH-->
+    <string name="newMatch">Nouveau Match</string>
+    <string name="player1">Joueur 1</string>
+    <string name="player2">Joueur 2</string>
+    <string name="nbOfSets">Nombre de sets</string>
+    <string name="firstServ">Premier service</string>
+    <string name="start">Commencer !</string>
+    <string name="next">Suivant</string>
+    <string name="radioButton_3">3</string>
+    <string name="radioButton_4">4</string>
+
+    <!--FRAGMENT MAP-->
+    <string name="locate_string">Localisation : </string>
+    <string name="hint_loc">Localisation</string>
+    <string name="get_loc">Avoir Location</string>
+    <string name="latitude">Latitude</string>
+    <string name="tv_latitude">0.0</string>
+    <string name="longitude">Longitude</string>
+    <string name="tv_longitude">0.0</string>
+
+    <!-- GAME HISTORY-->
+    <string name="gameHistory_title">LISTE DES ANCIENS MATCHS</string>
+    <string name="gameHistory_infos">hello</string>
+
+    <!-- NEW POINT-->
+    <string name="newPointTitle">Joueur</string>
+    <string name="radioButton_Gamer1">Joueur 1</string>
+    <string name="radioButton_Gamer2">Joueur 2</string>
+    <string name="txt_pointFor">Point pour :</string>
+    <string name="pointType">Type de point</string>
+    <string name="txtWiningReturn">Retour gagnant </string>
+    <string name="txt_Ace">Ace</string>
+    <string name="radioButton_winningShot">Coup gagnant</string>
+    <string name="radioButton_directFault">Faute directe</string>
+    <string name="txt_endOfPoint">Fin point</string>
+
+    <!-- END OF GAME-->
+    <string name="title_EndofGame">FIN DU MATCH</string>
+    <string name="textBeforeWinner">Le gagnant est: </string>
+    <string name="nameWinner">Jack</string>
+    <string name="endOfGame_BacktoMenu">Menu</string>
+    <string name="hint_game_1">Jeu 1</string>
+
+    <!-- STATS FRAG -->
+    <string name="title_stats">STATISTIQUES</string>
+    <string name="game_id_stats">Jeu_ID</string>
+    <string name="stats_Nameplayer1">Nom1</string>
+    <string name="stats_Nameplayer2">Nom2</string>
+    <string name="stats_Winner">Gagnant du match :</string>
+    <string name="stats_WinnerName">Nom gagnant</string>
+    <string name="stats_table">STATS</string>
+    <string name="nb_winning_shots">NB coups gagants</string>
+    <string name="nb_direct_faults">NB fautes directes</string>
+    <string name="nb_aces">NB Aces</string>
+    <string name="nb_win_points">NB points gagnés</string>
+    <string name="pct_winning_shots">% coups gagnants</string>
+    <string name="pct_direct_faults">% fautes directes</string>
+    <string name="pct_aces">% Aces</string>
+    <string name="TOTAL_win_points">TOTAL POINTS GAGNES</string>
+    <string name="pct_winning_returns">% retour gagnant</string>
+</resources>

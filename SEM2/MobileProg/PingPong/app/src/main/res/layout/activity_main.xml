@@ -47,4 +47,39 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/TextView01"
+        android:layout_marginTop="170dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!--button view for french language-->
+        <Button
+            android:id="@+id/btnFr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:tag="fr"
+            android:text="@string/francais"
+            android:textColor="#ffffff" />
+
+        <!--button view for english language-->
+        <Button
+            android:id="@+id/btnEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingRight="15dp"
+            android:tag="en"
+            android:text="@string/english"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>
+
