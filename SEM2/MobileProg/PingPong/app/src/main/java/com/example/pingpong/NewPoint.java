@@ -1,10 +1,13 @@
 package com.example.pingpong;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,14 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Fragment NewPoint for register every point of the match
@@ -23,6 +34,7 @@ public class NewPoint extends Fragment {
     Button nextButton;
     Switch ace, winningReturn;
     RadioButton player1, player2, direct, fault;
+    private Handler handler;
 
     short actualPoint = Singleton.getInstance().getPointNumber();
     /**
@@ -78,10 +90,9 @@ public class NewPoint extends Fragment {
                 Singleton.getInstance().setPlayer2ActualSet(0);
                 Singleton.getInstance().setPlayer1ActualSet(0);
                 Singleton.getInstance().setPointNumber((short) 1);
-<<<<<<< HEAD
+
                 //System.out.println("won sets player 1 " + Singleton.getInstance().getPlayer1WonSets());
-=======
->>>>>>> 39df2cbacc83a66e21b622695b3d1211069f3b1f
+
 
 
             } else if (Singleton.getInstance().getPlayer2ActualSet() == 11 && Singleton.getInstance().getPlayer1ActualSet() <= 9){
@@ -142,6 +153,7 @@ public class NewPoint extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        handler = new Handler();
         super.onCreate(savedInstanceState);
 
     }
@@ -153,13 +165,14 @@ public class NewPoint extends Fragment {
         short nbOfSets;
         if(Singleton.getInstance().isSets()) nbOfSets = 4;
         else nbOfSets = 3;
-        MySQLiteGameHelper db = new MySQLiteGameHelper(getContext());
-        db.createGame(Singleton.getInstance().getTimestamp(), Singleton.getInstance().getPlayer1(),Singleton.getInstance().getPlayer2(),Singleton.getInstance().getWinnersName(),nbOfSets,Singleton.getInstance().getPlayer1Points(),
+        createGame(Singleton.getInstance().getTimestamp(), Singleton.getInstance().getPlayer1(),Singleton.getInstance().getPlayer2(),Singleton.getInstance().getWinnersName(),nbOfSets,Singleton.getInstance().getPlayer1Points(),
                 Singleton.getInstance().getPlayer2Points(), Singleton.getInstance().getPlayer1WonSets(), Singleton.getInstance().getPlayer2WonSets(), Singleton.getInstance().getPlayer1WinningShots(),
                 Singleton.getInstance().getPlayer2WinningShots(), Singleton.getInstance().getPlayer1Aces(), Singleton.getInstance().getPlayer2Aces(), Singleton.getInstance().getPlayer1DirectFaults(), Singleton.getInstance().getPlayer2DirectFaults(),
                 Singleton.getInstance().getPlayer1WinningReturns(), Singleton.getInstance().getPlayer2WinningReturns());
         FragmentTransaction fragmentTransaction = getActivity()
                 .getSupportFragmentManager().beginTransaction();
+
+
         fragmentTransaction.replace(R.id.fragment_container, new EndGameFragment());
         fragmentTransaction.commit();
         //Singleton.getInstance().reset();
@@ -209,6 +222,101 @@ public class NewPoint extends Fragment {
         }
 
         return v;
+    }
+
+
+    /**
+     * Inserts in the table the informations of a match using a post request to our distant database
+     * @param timestamp
+     * @param player1
+     * @param player2
+     * @param winner
+     * @param nbOfSets
+     * @param player1points
+     * @param player2points
+     * @param player1WonSets
+     * @param player2WonSets
+     * @param player1WinningShots
+     * @param player2WinningShots
+     * @param player1Aces
+     * @param player2Aces
+     * @param player1DirectFaults
+     * @param player2DirectFaults
+     * @param player1WinningReturns
+     * @param player2WinningReturns
+     */
+    public void createGame(Long timestamp, String player1, String player2, String winner,Short  nbOfSets, Short player1points, Short player2points,
+                           Short player1WonSets, Short player2WonSets, Short player1WinningShots, Short player2WinningShots, Short player1Aces,
+                           Short player2Aces, Short player1DirectFaults, Short player2DirectFaults, Short player1WinningReturns, Short player2WinningReturns) {
+        MySQLiteGameHelper db = new MySQLiteGameHelper(getContext());
+        String finalPlayer = player2;
+        String finalPlayer1 = player1;
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.33.10/dbconfig.php",
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        System.out.println(response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        System.out.println("lala" + error.getMessage());
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("timestamp",timestamp.toString());
+                params.put("player1", finalPlayer1);
+                params.put("player2", finalPlayer);
+                params.put("winner", winner);
+                params.put("nbOfSets", String.valueOf(nbOfSets));
+                params.put("player1points", String.valueOf(player1points));
+                params.put("player2points", String.valueOf(player2points));
+                params.put("player1WonSets", String.valueOf(player1WonSets));
+                params.put("player2WonSets", String.valueOf(player2WonSets));
+                params.put("player1WinningShots", String.valueOf(player1WinningShots));
+                params.put("player2WinningShots", String.valueOf(player2WinningShots));
+                params.put("player1Aces", String.valueOf(player1Aces));
+                params.put("player2Aces", String.valueOf(player2Aces));
+                params.put("player1DirectFaults", String.valueOf(player1DirectFaults));
+                params.put("player2DirectFaults", String.valueOf(player2DirectFaults));
+                params.put("player1WinningReturns", String.valueOf(player1WinningReturns));
+                params.put("player2WinningReturns", String.valueOf(player2WinningReturns));
+                params.put("key", "0");
+                return params;
+            }
+        };
+
+        /**
+         * Runnable to execute the database operations in a different thread
+         */
+        Runnable runnable = new Runnable() {          //Method using threads and handlers
+            @Override
+            public void run() {
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        db.createGame(timestamp, player1, player2,  winner,  nbOfSets, player1points,  player2points,
+                                player1WonSets, player2WonSets,  player1WinningShots, player2WinningShots,  player1Aces,
+                                 player2Aces,  player1DirectFaults,  player2DirectFaults, player1WinningReturns, player2WinningReturns);
+                        MainActivity.requestQueue.add(postRequest);
+                    }
+                });
+            }
+        };
+        new Thread(runnable).start();
+
+
     }
 
 }

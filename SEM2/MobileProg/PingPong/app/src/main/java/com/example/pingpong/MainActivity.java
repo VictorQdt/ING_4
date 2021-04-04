@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 /**
  * The Main Activity contains 2 buttons :
  * - Create & Play a New Game
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Listener for the choice of the button
      */
+    static RequestQueue requestQueue;
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        requestQueue = Volley.newRequestQueue(this);
         Button btn_newGame = (Button)findViewById(R.id.btn_newGame);
         btn_newGame.setOnClickListener(onClickListener);
 

@@ -45,6 +45,7 @@
             android:text="@string/btn_history"
             android:layout_weight="1.0" />
 
+
     </LinearLayout>
 
 </RelativeLayout>

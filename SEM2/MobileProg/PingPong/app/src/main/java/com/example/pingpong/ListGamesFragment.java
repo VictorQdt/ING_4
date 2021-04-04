@@ -2,6 +2,7 @@ package com.example.pingpong;
 
 import android.database.Cursor;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,30 +21,34 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ListGamesFragment extends Fragment {
 
-
-    Calendar cal = Calendar.getInstance();
     ListView listViewGames;
     MySQLiteGameHelper mySQLiteGameHelper;
+    RequestQueue requestQueue;
 
-
-
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
 
     public ListGamesFragment() {
         // Required empty public constructor
@@ -51,6 +56,116 @@ public class ListGamesFragment extends Fragment {
 
     /**
      * Function to retrieve data from the database to generate the clickable list of the past matches
+     */
+
+    public void getListContent(){
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.33.10/dbconfig.php",
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            JSONArray jsonObject = new JSONArray(response);
+                            ArrayList<String> theList = new ArrayList<>();
+                            for (int i = 0; i<jsonObject.length(); i++){
+                                JSONObject actual = jsonObject.getJSONObject(i);
+                                Date date = new Date(Long.parseLong(actual.getString("timestamp"))*1000L);
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                                String strDate = simpleDateFormat.format(date);
+                                String listTag = strDate + "     " + actual.getString("player1") + "     " + actual.getString("player2");
+                                theList.add(listTag); // 1 = column number
+                                ListAdapter listAdapter;
+                                listAdapter= new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, theList);
+                                listViewGames.setAdapter(listAdapter);
+                                listViewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    /**
+                                     * create a bundle for each clickable element with the data of the associated match and replace the fragement with
+                                     * the gamestat fragment
+                                     * @param adapterView
+                                     * @param view
+                                     * @param positionView
+                                     * @param rowId
+                                     */
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int positionView, long rowId) {
+                                        //Toast.makeText(History.this, "Position item : " + listAdapter.getItem(i) , Toast.LENGTH_SHORT).show();
+                                        try {
+                                            JSONObject actual2 = jsonObject.getJSONObject((int) rowId);
+                                            Bundle bundle = new Bundle();
+                                            try {
+                                                bundle.putString("player1",actual2.getString("player1"));
+                                                bundle.putString("player2",actual2.getString("player2"));
+                                                bundle.putString("winner", actual2.getString("winner"));
+                                                bundle.putShort("player1points",Short.parseShort(actual2.getString("player1points")));
+                                                bundle.putShort("player2points",Short.parseShort(actual2.getString("player2points")));
+                                                bundle.putShort("player1WinningShots",Short.parseShort(actual2.getString("player1WinningShots")));
+                                                bundle.putShort("player2WinningShots",Short.parseShort(actual2.getString("player2WinningShots")));
+                                                bundle.putShort("player1Aces",Short.parseShort(actual2.getString("player1Aces")));
+                                                bundle.putShort("player2Aces",Short.parseShort(actual2.getString("player2Aces")));
+                                                bundle.putShort("player1DirectFaults",Short.parseShort(actual2.getString("player1DirectFaults")));
+                                                bundle.putShort("player2DirectFaults",Short.parseShort(actual2.getString("player2DirectFaults")));
+                                                bundle.putShort("player1WinningReturns",Short.parseShort(actual2.getString("player1WinningReturns")));
+                                                bundle.putShort("player2WinningReturns",Short.parseShort(actual2.getString("player2WinningReturns")));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            Fragment statsGame = new GameStatFragment();
+                                            statsGame.setArguments(bundle);
+                                            FragmentTransaction fragmentTransaction = getActivity()
+                                                    .getSupportFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.fragment_container, statsGame);
+                                            fragmentTransaction.commit();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        System.out.println("lalal2" + error.getMessage());
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("key", "1");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    /**
+     * Async Task to retrieve the data from the database
+     */
+    private class FillList extends AsyncTask<Void, Void, Void> {
+
+       @Override
+       protected Void doInBackground(Void... voids) {
+           getListContent();
+           return null;
+       }
+   }
+
+    /**
+     * Function to create the list of games with the local database
      */
     private void addDataList() {
         ArrayList<String> theList = new ArrayList<>();
@@ -109,8 +224,10 @@ public class ListGamesFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         mySQLiteGameHelper = new MySQLiteGameHelper(getContext());
+        requestQueue = MainActivity.requestQueue;
     }
 
     @Override
@@ -120,7 +237,7 @@ public class ListGamesFragment extends Fragment {
         View newListGames = inflater.inflate(R.layout.fragment_list_games, container, false);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/2.ttf");
         listViewGames = (ListView) newListGames.findViewById(R.id.listViewGames);
-        addDataList();
+        new FillList().execute();
         return newListGames;
     }
 }

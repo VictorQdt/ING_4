@@ -1,23 +1,33 @@
 package com.example.pingpong;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MySQLiteGameHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Jack.db";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "ppGame";
+    private  Context contextHere;
+    JSONArray finalArray;
+    RequestQueue requestQueue;
 
     /**
      * Constructor
@@ -26,6 +36,9 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
      */
     public MySQLiteGameHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        contextHere = context;
+        requestQueue = Volley.newRequestQueue(context);
+        finalArray = new JSONArray();
     }
 
     /**
@@ -75,7 +88,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Inserts in the table the informations of a match
+     * Creates a game in the local SQLite database
      * @param timestamp
      * @param player1
      * @param player2
@@ -95,8 +108,8 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
      * @param player2WinningReturns
      */
     public void createGame(Long timestamp, String player1, String player2, String winner,Short  nbOfSets, Short player1points, Short player2points,
-                    Short player1WonSets, Short player2WonSets, Short player1WinningShots, Short player2WinningShots, Short player1Aces,
-                           Short player2Aces, Short player1DirectFaults, Short player2DirectFaults, Short player1WinningReturns, Short player2WinningReturns) {
+                           Short player1WonSets, Short player2WonSets, Short player1WinningShots, Short player2WinningShots, Short player1Aces,
+                           Short player2Aces, Short player1DirectFaults, Short player2DirectFaults, Short player1WinningReturns, Short player2WinningReturns){
         player1 = player1.replace("'", "''");
         player2= player2.replace("'", "''");
         String strSQL = "insert into ppGame (timestamp, player1, player2, winner, nbOfSets, player1points, player2points, player1WonSets, player2WonSets,player1WinningShots, player2WinningShots, player1Aces, player2Aces, player1DirectFaults, player2DirectFaults, player1WinningReturns, player2WinningReturns ) values ( "
@@ -104,8 +117,18 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
                 + "," + player1WinningShots + "," + player2WinningShots + "," + player1Aces + "," + player2Aces + "," + player1DirectFaults + "," + player2DirectFaults + "," + player1WinningReturns
                 + "," + player2WinningReturns+ ")";
         this.getWritableDatabase().execSQL( strSQL );
+        Cursor data = this.getReadableDatabase().rawQuery("SELECT Count(*) FROM " + TABLE_NAME, null);
+        data.moveToFirst();
+        /**
+         * Deletes localy the games that are not the last fives
+         */
+        if(data.getInt(0) > 5){
+            String delete = "DELETE FROM ppgame WHERE timestamp NOT IN (SELECT timestamp FROM ppgame ORDER BY timestamp DESC LIMIT 5)";
+            this.getWritableDatabase().execSQL( delete );
+        }
         Log.i("DATABASE", "startGame invoked");
     }
+
 
     /**
      * Retrieve the data from the table ppGame
@@ -116,4 +139,6 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         return data;
     }
+
+
 }
