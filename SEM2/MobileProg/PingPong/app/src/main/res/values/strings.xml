@@ -75,4 +75,7 @@
     <string name="pct_aces">% Aces</string>
     <string name="TOTAL_win_points">TOTAL WIN POINTS</string>
     <string name="pct_winning_returns">% Winning Returns</string>
+    <string name="francais">Français</string>
+    <string name="english">English</string>
+    <string name="enter_address_city_or_zip_code">Enter Address, City or Zip Code</string>
 </resources>

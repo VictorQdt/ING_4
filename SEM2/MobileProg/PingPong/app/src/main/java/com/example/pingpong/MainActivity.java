@@ -1,11 +1,20 @@
 package com.example.pingpong;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.res.Configuration;
+import android.os.Bundle;
+
+import java.util.Locale;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -16,6 +25,10 @@ import com.android.volley.toolbox.Volley;
  * - Go to History of Games
  */
 public class MainActivity extends AppCompatActivity {
+
+    Context context;
+    Resources resources;
+    TextView title;
 
     /**
      * Listener for the choice of the button
@@ -31,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
             }else if (String.valueOf(v.getTag()).equals("historyTag")){
                 Intent i = new Intent(MainActivity.this, History.class);
                 startActivity(i);
+            }else if (String.valueOf(v.getTag()).equals("fr")) {
+                setLocale(MainActivity.this,"fr");
+                finish();
+                startActivity(getIntent());
+            }else if (String.valueOf(v.getTag()).equals("en")) {
+                setLocale(MainActivity.this,"en");
+                finish();
+                startActivity(getIntent());
             }
         }
     };
@@ -49,5 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn_history = (Button)findViewById(R.id.btn_history);
         btn_history.setOnClickListener(onClickListener);
+
+        Button btnFr = (Button)findViewById(R.id.btnFr);
+        btnFr.setOnClickListener(onClickListener);
+
+        Button btnEnglish = (Button)findViewById(R.id.btnEnglish);
+        btnEnglish.setOnClickListener(onClickListener);
+
+        title = (TextView)findViewById(R.id.TextView01);
+    }
+
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 }

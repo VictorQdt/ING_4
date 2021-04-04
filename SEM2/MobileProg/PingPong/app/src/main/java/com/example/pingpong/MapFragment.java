@@ -12,10 +12,15 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +43,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,13 +53,20 @@ import java.util.Locale;
  */
 public class MapFragment extends Fragment {
 
+    private static final String TAG = "MapActivity";
+    private static final float DEFAULT_ZOOM = 15f;
+
     //Properties
     private TextView tv_longitude, tv_latitude;
     private FusedLocationProviderClient locClient;
     private SupportMapFragment supportMapFragment;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
 
-    GoogleMap mMap;
-    Geocoder geocoder;
+    private GoogleMap mMap;
+    private Geocoder geocoder;
+
+    //widgets
+    private EditText mSearchText;
 
     @Nullable
     @Override
@@ -62,34 +76,15 @@ public class MapFragment extends Fragment {
         View map_view = inflater.inflate(R.layout.fragment_map, container, false);
 
         //Initialize fields
-        Button btn_loc = (Button) map_view.findViewById(R.id.btn_getLoc);
-        tv_longitude = (TextView) map_view.findViewById(R.id.tv_long);
-        tv_latitude = (TextView) map_view.findViewById(R.id.tv_lat);
         geocoder = new Geocoder(getContext(), Locale.getDefault());
+        mSearchText = (EditText) getActivity().findViewById(R.id.input_search);
 
         //Initialize location Client
         locClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         //Initialize fragment map
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
-        
 
-        // Button Location Listener
-        btn_loc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Check condition
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                        && ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    // When permission is granted : call method
-                    getCurrentLocation();
-                } else {
-                    // When permission is not granted : request permission
-                    requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION
-                            , Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-                }
-            }
-        });
         //Return view
         return map_view;
     }
@@ -123,29 +118,24 @@ public class MapFragment extends Fragment {
     private void getCurrentLocation() {
         // Initialize location manager : provide the access to the system location service
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         // Check conditions GPS & Network
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             // When Location service is enabled : get last location
-            locClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            final Task location = mFusedLocationProviderClient.getLastLocation();
+            location.addOnCompleteListener(new OnCompleteListener<Location>() {
                 @Override
                 public void onComplete(@NonNull Task<Location> task) {
-                    // Initialize location
-                    Location currentLoc = task.getResult();
-                    // Check conditions
-                    if (currentLoc != null) {
-                        // Loc is not null then fix latitude and longitude
-                        tv_longitude.setText(String.valueOf(currentLoc.getLongitude()));
-                        tv_latitude.setText(String.valueOf(currentLoc.getLatitude()));
-
-                        /**
-                        LatLng coord = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(coord).title("Last position"));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coord, 15));**/
-
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "onComplete : found location");
+                        Location currentLoc = (Location) task.getResult();
+                        //moving the camera
+                        moveCamera(new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude()), DEFAULT_ZOOM, "My Location");
                     } else {
-                        Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onComplete : current loc is null");
+                        Toast.makeText(getActivity(), "unable to get current loc", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -156,4 +146,71 @@ public class MapFragment extends Fragment {
         }
     }
 
+    /**
+     * Method for moving the camera on the current location
+     *
+     * @param latLng
+     * @param zoom
+     */
+    private void moveCamera(LatLng latLng, float zoom, String title) {
+        Log.d(TAG, "moveCamera: moving camera to lat " + latLng.latitude + "long :" + latLng.longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+
+        if(!title.equals("My Location")){
+            MarkerOptions options = new MarkerOptions().position(latLng).title(title);
+            mMap.addMarker(options);
+        }
+        hideKeyboard();
+    }
+
+    /**
+     * Listener for the Search Bar
+     */
+    private void init(){
+        Log.d(TAG,"init: initializing");
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_SEARCH
+                        || i == EditorInfo.IME_ACTION_DONE
+                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
+                    //execute our method for searching
+                    geoLocate();
+                }
+                return false;
+            }
+        });
+        hideKeyboard();
+    }
+
+    /**
+     * Geolocate the search string
+     */
+    private void geoLocate(){
+        Log.d(TAG,"geoLocate: geoLocating");
+
+        String searchString = mSearchText.getText().toString();
+
+        Geocoder geocoder = new Geocoder(getActivity());
+        List<Address> list = new ArrayList<>();
+        try{
+            list = geocoder.getFromLocationName(searchString, 1);
+        } catch (IOException e) {
+            Log.d(TAG,"geoLocate: IOException " + e.getMessage());
+        }
+        if(list.size() > 0) {
+            Address address = list.get(0);
+            Log.d(TAG,"geoLocate: found a location " + address.toString());
+
+            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
+        }
+    }
+
+    /**
+     * Hide the Keyboard
+     */
+    private void hideKeyboard(){
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
 }

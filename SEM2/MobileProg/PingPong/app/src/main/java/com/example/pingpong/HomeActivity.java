@@ -1,6 +1,9 @@
 package com.example.pingpong;
 
 import android.annotation.SuppressLint;
+
+import android.app.Activity;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,14 +29,13 @@ import static com.example.pingpong.R.id.nav_photo;
  */
 public class HomeActivity extends AppCompatActivity {
 
+    private static final String TAG = "HomeActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+
     /**
      * Listener of the bottom navigation bar
      * When choosing an option, a new Fragment is created
      */
-
-    private static final String TAG = "HomeActivity";
-    private static final int ERROR_DIALOG_REQUEST = 9001;
-
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
+                    Activity selectedActivity = null;
                     //Create the fragments
                     switch (item.getItemId()) {
                         case nav_home:
@@ -60,8 +59,11 @@ public class HomeActivity extends AppCompatActivity {
                             break;
                         case nav_map:
                             if(isServicesOK()){
-                                Intent i = new Intent(HomeActivity.this, MapActivity.class);
-                                startActivity(i);
+
+                                selectedFragment = new MapFragment();
+                                //Show the fragment selected
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
                             } else {
                                 Log.d(TAG, "nav_map : access denied");
                             }
