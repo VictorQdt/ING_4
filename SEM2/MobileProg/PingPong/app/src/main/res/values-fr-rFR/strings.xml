@@ -78,4 +78,5 @@
     <string name="pct_aces">% Aces</string>
     <string name="TOTAL_win_points">TOTAL POINTS GAGNES</string>
     <string name="pct_winning_returns">% retour gagnant</string>
+    <string name="enter_address_city_or_zip_code">Entrer Adresse, Ville ou Code Zip</string>
 </resources>

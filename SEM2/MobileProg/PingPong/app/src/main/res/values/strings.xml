@@ -77,4 +77,5 @@
     <string name="pct_winning_returns">% Winning Returns</string>
     <string name="francais">Français</string>
     <string name="english">English</string>
+    <string name="enter_address_city_or_zip_code">Enter Address, City or Zip Code</string>
 </resources>
