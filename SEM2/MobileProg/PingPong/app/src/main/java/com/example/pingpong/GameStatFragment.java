@@ -35,7 +35,6 @@ import java.util.List;
 public class GameStatFragment extends Fragment {
 
     private TextView idGame, pct_winning_shotsP1, pct_winning_returnsP1, pct_direct_faultsP1, pct_acesP1, TOTAL_win_pointsP1, pct_winning_shotsP2, pct_winning_returnsP2, pct_direct_faultsP2, pct_acesP2, TOTAL_win_pointsP2, stats_WinnerName, stats_Nameplayer1, stats_Nameplayer2;
-    private BarChart chart;
     private TableLayout tableLayout;
     int[] color = new int[]{Color.RED, Color.CYAN, Color.BLUE};
 
@@ -76,7 +75,6 @@ public class GameStatFragment extends Fragment {
         //Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ProductSans.ttf");
         idGame = (TextView) view_stats.findViewById(R.id.id_STATS);
         tableLayout = (TableLayout) view_stats.findViewById(R.id.tableLayout);
-        chart = (BarChart) view_stats.findViewById(R.id.chart);
         pct_winning_shotsP1 = (TextView)view_stats.findViewById(R.id.pct_winning_shotsP1);
         pct_winning_shotsP2 = (TextView)view_stats.findViewById(R.id.pct_winning_shotsP2);
         pct_winning_returnsP1 = (TextView)view_stats.findViewById(R.id.pct_winning_returnsP1);
@@ -91,11 +89,6 @@ public class GameStatFragment extends Fragment {
         stats_Nameplayer2 = (TextView)view_stats.findViewById(R.id.stats_Nameplayer2);
         stats_WinnerName = (TextView)view_stats.findViewById(R.id.stats_WinnerName);
 
-        BarDataSet barDataSet = new BarDataSet(data(), "bar set");
-        barDataSet.setColors(color);
-
-        BarData barData = new BarData(barDataSet);
-        chart.setData(barData);
         // Inflate the layout for this fragment
         return view_stats;
     }

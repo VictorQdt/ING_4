@@ -27,7 +27,6 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "ppGame";
     private  Context contextHere;
     JSONArray finalArray;
-    RequestQueue requestQueue;
 
     /**
      * Constructor
@@ -37,7 +36,6 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     public MySQLiteGameHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         contextHere = context;
-        requestQueue = Volley.newRequestQueue(context);
         finalArray = new JSONArray();
     }
 
@@ -120,7 +118,7 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
         Cursor data = this.getReadableDatabase().rawQuery("SELECT Count(*) FROM " + TABLE_NAME, null);
         data.moveToFirst();
         /**
-         * Deletes localy the games that are not the last fives
+         * Deletes locally the games that are not the last fives
          */
         if(data.getInt(0) > 5){
             String delete = "DELETE FROM ppgame WHERE timestamp NOT IN (SELECT timestamp FROM ppgame ORDER BY timestamp DESC LIMIT 5)";
