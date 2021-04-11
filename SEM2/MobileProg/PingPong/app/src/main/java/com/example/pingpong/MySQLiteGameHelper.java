@@ -4,21 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.AsyncTask;
 import android.util.Log;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MySQLiteGameHelper extends SQLiteOpenHelper {
 
@@ -27,7 +14,6 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "ppGame";
     private  Context contextHere;
     JSONArray finalArray;
-    RequestQueue requestQueue;
 
     /**
      * Constructor
@@ -37,7 +23,6 @@ public class MySQLiteGameHelper extends SQLiteOpenHelper {
     public MySQLiteGameHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         contextHere = context;
-        requestQueue = Volley.newRequestQueue(context);
         finalArray = new JSONArray();
     }
 
